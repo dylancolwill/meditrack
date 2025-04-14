@@ -1,0 +1,44 @@
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rm;
+}
+
+.content-grid article {
+    padding: 1rem;
+    border-color: black;
+    border-style: solid;
+    flex-grow: 1;
+}
+
+.content-grid section {
+    margin: 1rem;
+}
+
+.content-grid h2 {
+    text-align: center;
+    margin: 0px;
+}
+
+.content-grid h3 {
+    text-align: center;
+}
+
+.patient-info,
+.allergies {
+    grid-column: span 3;
+}
+
+.conditions,
+.medications,
+.vaccinations {
+    grid-column: span 2;
+}
+
+.header-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
