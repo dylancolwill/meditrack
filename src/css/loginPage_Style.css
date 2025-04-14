@@ -1,0 +1,43 @@
+.mainHead{
+    font-family: "Helvetica", "Arial", serif;
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: bold;
+}
+
+#uName{
+    font-family:"Helvetica", sans-serif;
+    border-radius: 40px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#pswd{
+    margin-top: 5px;
+    border-radius: 40px;
+    
+}
+
+#backing{
+    background-color: lightgray;
+    padding: 100px;
+    border-radius: 10px;
+}
+
+#padding{
+    padding-top: 10em;
+}
+
+#button{
+    width: 80px;
+    margin-top: 10px;
+    margin-left: 120px;
+    border-radius: 40px;
+    background-color: lightblue;
+    border-width: 1px;
+}
+
+#button:hover{
+    background-color: rgb(147, 186, 199);
+
+}
