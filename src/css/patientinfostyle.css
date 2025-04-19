@@ -1,0 +1,119 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+.header-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: lightgray;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.header-grid h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+#add-info-button {
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.grid-item {
+    padding: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.grid-item h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    padding-bottom: 2px;
+}
+
+.grid-item article {
+    font-size: 0.9em;
+}
+
+.grid-item article p {
+    margin: 5px 0;
+}
+
+.patient-info {
+    grid-column: span 3;
+}
+
+.allergies {
+    grid-column: span 3;
+}
+
+.conditions {
+    grid-column: span 2;
+}
+
+.medications {
+    grid-column: span 2;
+}
+
+.vaccinations {
+    grid-column: span 2;
+}
+
+.patient-info, .allergies, .conditions, .medications, .vaccinations {
+    color: #333;
+}
+
+.episodes-area {
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+.episodes-area h2 {
+    margin-top: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid lightgray;
+    padding: 5px;
+    text-align: left;
+    font-size: 0.85em;
+    background-color: white;
+}
+
+th {
+    background-color: whitesmoke;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(odd) td {
+    background-color: whitesmoke;
+}
+
+#no-episodes-msg,
+#no-medications-msg,
+#no-conditions-msg,
+#no-reactions-msg,
+#no-vaccinations-msg {
+    display: none;
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
