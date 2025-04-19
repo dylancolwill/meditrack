@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Information</title>
+    </head>
+<body>
+
+    <h1>Patient Information</h1>
+
+    <div id="patient-info">
+        <p><strong>ID:</strong> <span id="patient-id"></span></p>
+        <p><strong>Name:</strong> <span id="patient-name"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="patient-birthdate"></span></p>
+        <p><strong>Address:</strong> <span id="patient-address"></span></p>
+        <p><strong>Billing:</strong> <span id="patient-billing"></span></p>
+    </div>
+
+    <hr> <div id="episodes-section">
+        <h2>Episodes</h2>
+        <table border="1"> <thead>
+                <tr>
+                    <th>Episode ID</th>
+                    <th>Date</th>
+                    <th>Overseeing Staff</th>
+                    <th>Clinical Data Summary</th>
+                </tr>
+            </thead>
+            <tbody id="episodes-tbody">
+                </tbody>
+        </table>
+        <p id="no-episodes-msg" style="display: none;">No episodes recorded for this patient.</p>
+    </div>
+
+    <hr>
+
+    <div id="medications-section">
+        <h2>Medications</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Medication</th>
+                    <th>Dosage</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Prescribing Episode</th>
+                </tr>
+            </thead>
+            <tbody id="medications-tbody">
+                </tbody>
+        </table>
+        <p id="no-medications-msg" style="display: none;">No medications recorded for this patient.</p>
+    </div>
+
+    <hr>
+
+    <div id="conditions-section">
+        <h2>Conditions</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Condition</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Related Clinical Data ID</th>
+                    <th>Related Medication ID</th>
+                </tr>
+            </thead>
+            <tbody id="conditions-tbody">
+                </tbody>
+        </table>
+        <p id="no-conditions-msg" style="display: none;">No conditions recorded for this patient.</p>
+    </div>
+
+    <hr>
+
+    <div id="adverse-reactions-section">
+        <h2>Adverse Reactions</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Reaction</th>
+                    <th>Origin (Medication)</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+            </thead>
+            <tbody id="adverse-reactions-tbody">
+                </tbody>
+        </table>
+         <p id="no-reactions-msg" style="display: none;">No adverse reactions recorded for this patient.</p>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>Actions</h2>
+        <button id="add-info-button">Add Patient Information</button>
+        </div>
+
+
+    <script src="js/patientinfoscript.js"></script>
+</body>
+</html>
