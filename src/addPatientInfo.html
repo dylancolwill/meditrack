@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/style.css">
+
+        <title>MediTrack</title>
+    </head>
+    <body>
+        <label for="catagories">Select catagory:</label>
+
+        <select onchange="onSelect()" name="catagories" id="catagories">
+            <option value="allergy">Allergy</option>
+            <option value="condition">Condition</option>
+            <option value="medication">Medication</option>
+            <option value="vaccination">Vaccination</option>
+        </select>
+
+        <div id="data-sections-container">
+            <h2 id="catagory-title">title</h2>
+            <section id="allergy-table"
+                class="grid-item allergies data-section hidden">
+
+                <article>
+                    <table border="1">
+                        <thead> <tr>
+                                <th>Reaction</th>
+                                <th>Origin (Medication)</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Action</th> </tr>
+                        </thead>
+                        <tbody id="allergy-tbody">
+                            <tr>
+                                <td><input type="text"
+                                        placeholder="e.g., Rash"></td>
+                                <td><input type="text"
+                                        placeholder="e.g., Penicillin"></td>
+                                <td><input type="date"></td>
+                                <td><input type="date"></td>
+                                <td><button type="button"
+                                        class="add-row-btn">Add
+                                        Row</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p id="no-reaction-msg" style="display: none;">No adverse
+                        reactions recorded.</p>
+                </article>
+            </section>
+
+            <section id="condition-table"
+                class="grid-item conditions data-section hidden">
+                <article>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Condition</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Clinical Data ID</th>
+                                <th>Medication ID</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="condition-tbody">
+                            <tr>
+                                <td><input type="text"
+                                        placeholder="e.g., Hypertension"></td>
+                                <td><input type="date"></td>
+                                <td><input type="date"></td>
+                                <td><input type="text" placeholder="ID"></td>
+                                <td><input type="text" placeholder="ID"></td>
+                                <td><button type="button"
+                                        class="add-row-btn">Add
+                                        Row</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p id="no-condition-msg" style="display: none;">No
+                        conditions recorded.</p>
+                </article>
+            </section>
+
+            <section id="medication-table"
+                class="grid-item medications data-section hidden">
+                <article>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Medication</th>
+                                <th>Dosage</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Prescribing Episode</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="medication-tbody">
+                            <tr>
+                                <td><input type="text"
+                                        placeholder="e.g., Lisinopril"></td>
+                                <td><input type="text"
+                                        placeholder="e.g., 10mg daily"></td>
+                                <td><input type="date"></td>
+                                <td><input type="date"></td>
+                                <td><input type="text"
+                                        placeholder="Episode Info"></td>
+                                <td><button type="button"
+                                        class="add-row-btn">Add
+                                        Row</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p id="no-medication-msg" style="display: none;">No
+                        medications recorded.</p>
+                </article>
+            </section>
+
+            <section id="vaccination-table"
+                class="grid-item vaccinations data-section hidden">
+                <article>
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Vaccine</th>
+                                <th>Date Given</th>
+                                <th>Batch No.</th>
+                                <th>Administered By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vaccination-tbody">
+                            <tr>
+                                <td><input type="text"
+                                        placeholder="e.g., Influenza"></td>
+                                <td><input type="date"></td>
+                                <td><input type="text"
+                                        placeholder="Batch Number"></td>
+                                <td><input type="text"
+                                        placeholder="Clinician Name"></td>
+                                <td><button type="button"
+                                        class="add-row-btn">Add
+                                        Row</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p id="no-vaccination-msg" style="display: none;">No
+                        vaccinations recorded for this patient.</p>
+                </article>
+            </section>
+
+        </div>
+
+        <div>
+            
+
+        </div>
+
+        <script src="js/addPatientInfoScript.js"></script>
+
+    </body>
+</html>
