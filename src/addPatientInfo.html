@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/patientInfoStyle.css">
 
         <title>MediTrack</title>
     </head>
@@ -16,13 +16,14 @@
             <option value="condition">Condition</option>
             <option value="medication">Medication</option>
             <option value="vaccination">Vaccination</option>
+            <option value="episode">Episode</option>
+            <option value="clinical">Clinical Data</option>
         </select>
 
         <div id="data-sections-container">
-            <h2 id="catagory-title">title</h2>
-            <section id="allergy-table"
-                class="grid-item allergies data-section hidden">
-
+            <section id="allergy"
+                class="catagories-content">
+                <h2>Allergies</h2>
                 <article>
                     <table border="1">
                         <thead> <tr>
@@ -35,14 +36,13 @@
                         <tbody id="allergy-tbody">
                             <tr>
                                 <td><input type="text"
-                                        placeholder="e.g., Rash"></td>
+                                        placeholder="Reaction"></td>
                                 <td><input type="text"
-                                        placeholder="e.g., Penicillin"></td>
+                                        placeholder="Origin"></td>
                                 <td><input type="date"></td>
                                 <td><input type="date"></td>
                                 <td><button type="button"
-                                        class="add-row-btn">Add
-                                        Row</button></td>
+                                        class="add-row-btn">Done</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -51,8 +51,9 @@
                 </article>
             </section>
 
-            <section id="condition-table"
-                class="grid-item conditions data-section hidden">
+            <section id="condition"
+                class="catagories-content">
+                <h2>Conditions</h2>
                 <article>
                     <table border="1">
                         <thead>
@@ -68,14 +69,13 @@
                         <tbody id="condition-tbody">
                             <tr>
                                 <td><input type="text"
-                                        placeholder="e.g., Hypertension"></td>
+                                        placeholder="Condition Name"></td>
                                 <td><input type="date"></td>
                                 <td><input type="date"></td>
                                 <td><input type="text" placeholder="ID"></td>
                                 <td><input type="text" placeholder="ID"></td>
                                 <td><button type="button"
-                                        class="add-row-btn">Add
-                                        Row</button></td>
+                                        class="add-row-btn">Done</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -84,8 +84,9 @@
                 </article>
             </section>
 
-            <section id="medication-table"
-                class="grid-item medications data-section hidden">
+            <section id="medication"
+                class="catagories-content">
+                <h2>Medications</h2>
                 <article>
                     <table border="1">
                         <thead>
@@ -95,22 +96,20 @@
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>Prescribing Episode</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="medication-tbody">
                             <tr>
                                 <td><input type="text"
-                                        placeholder="e.g., Lisinopril"></td>
+                                        placeholder="Medication Name"></td>
                                 <td><input type="text"
-                                        placeholder="e.g., 10mg daily"></td>
+                                        placeholder="Dosage Amounr"></td>
                                 <td><input type="date"></td>
                                 <td><input type="date"></td>
-                                <td><input type="text"
-                                        placeholder="Episode Info"></td>
                                 <td><button type="button"
-                                        class="add-row-btn">Add
-                                        Row</button></td>
+                                        class="add-row-btn">Add</button></td>
+                                <td><button type="button"
+                                        class="add-row-btn">Done</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -119,8 +118,9 @@
                 </article>
             </section>
 
-            <section id="vaccination-table"
-                class="grid-item vaccinations data-section hidden">
+            <section id="vaccination"
+                class="catagories-content">
+                <h2>Vaccinations</h2>
                 <article>
                     <table border="1">
                         <thead>
@@ -135,15 +135,14 @@
                         <tbody id="vaccination-tbody">
                             <tr>
                                 <td><input type="text"
-                                        placeholder="e.g., Influenza"></td>
+                                        placeholder="Vaccine Name"></td>
                                 <td><input type="date"></td>
                                 <td><input type="text"
                                         placeholder="Batch Number"></td>
                                 <td><input type="text"
                                         placeholder="Clinician Name"></td>
                                 <td><button type="button"
-                                        class="add-row-btn">Add
-                                        Row</button></td>
+                                        class="add-row-btn">Done</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -152,14 +151,75 @@
                 </article>
             </section>
 
-        </div>
+            <section id="episode" class="catagories-content">
+                <h2>Episodes</h2>
+                <table border="1">
+                    <tr>
+                        <th>Episode ID</th>
+                        <th>Date</th>
+                        <th>Overseeing Staff</th>
+                    </tr>
+                    <tbody id="episodes-tbody">
+                        <tr>
+                            <td><input type="text"
+                                    placeholder="Episode ID"></td>
+                            <td><input type="date"></td>
+                            <td><button type="button"
+                                    class="add-row-btn">Add</button></td>
+                            <td><button type="button"
+                                    class="add-row-btn">Done</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="no-episodes-msg" style="display: none;">No episodes
+                    recorded for this patient.</p>
+            </section>
 
+            <section id="clinical" class="catagories-content">
+                <h2>Clinical Data</h2>
+                <table border="1">
+                    <tr>
+                        <th>Assosiating Episode</th>
+                        <th>Procedure Date</th>
+                        <th>Procedures Done</th>
+                        <th>Procedures Results</th>
+                        <th>Symptoms</th>
+                        <th>Diagnosis</th>
+                        <th>Clinical Data Summary</th>
+                    </tr>
+                    <tbody id="clinical-tbody">
+                        <tr>
+                            <td><button type="button"
+                                    class="add-row-btn">Add</button></td>
+                            <td><input type="date"></td>
+                            <td><input type="text"
+                                    placeholder="Procedures"></td>
+                            <td><input type="text"
+                                    placeholder="Results"></td>
+                            <td><input type="text"
+                                    placeholder="Symptoms"></td>
+                            <td><input type="text"
+                                    placeholder="Diagnosis"></td>
+                            <td><input type="text"
+                                    placeholder="Clinical Data Summary"></td>
+                            <td><button type="button"
+                                    class="add-row-btn">Done</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="no-clinical-msg" style="display: none;">No clinical data
+                    recorded for this patient.</p>
+            </section>
+
+        </div>
         <div>
-            
+            <button>save</button>
 
         </div>
 
         <script src="js/addPatientInfoScript.js"></script>
+        <script src="js/patientScripts.js"></script>
+        <script src="js/tempDB.js"></script>
 
     </body>
 </html>

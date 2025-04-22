@@ -1,66 +1,10 @@
-//change for aws data retrieval
-function getPatientData(patientId) {
-    const patient = db.patients.find(p => p.patientId === patientId);
-    if (!patient) return null;
-
-    //find associated data
-    const episodes = db.episodes.filter(e => e.patientId === patientId);
-    const medications = db.medications.filter(m => m.patientId === patientId);
-    const conditions = db.conditions.filter(c => c.patientId === patientId);
-    const adverseReactions = db.adverseReactions.filter(ar => ar.patientId === patientId);
-    //clinical data associated with patient episodes
-    const episodeIds = episodes.map(ep => ep.episodeId);
-    const clinicalData = db.clinicalData.filter(cd => episodeIds.includes(cd.episodeId));
-    const vaccinations = db.vaccinations.filter(v => v.patientId === patientId)
-
-    return {
-        patient,
-        episodes,
-        medications,
-        conditions,
-        adverseReactions,
-        medicalStaff: db.medicalStaff,
-        clinicalData,
-        vaccinations
-    };
-}
-
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    //retrieve from patient search or URL parameter in a real app
-    const PATIENT_ID_TO_DISPLAY = 'P001'; // Example Patient ID
+    //retrieve from patient search
+    const PATIENT_ID_TO_DISPLAY = 'P001';
 
     //get data
     const data = getPatientData(PATIENT_ID_TO_DISPLAY);
-
-    function findStaffName(staffId, staffList) {
-        const staff = staffList.find(s => s.staffId === staffId);
-        return staff ? `${staff.name} (${staff.position || 'N/A'})` : 'Unknown Staff';
-    }
-
-    function formatDate(dateString) {
-        if (!dateString) return 'N/A';
-        try {
-            const parts = dateString.split('-');
-            // Ensure parts has 3 elements and they are numbers
-            if (parts.length !== 3 || parts.some(isNaN)) {
-               console.warn("Invalid date format encountered:", dateString);
-               return dateString; // Return original string if format is wrong
-            }
-            const [day, month, year] = parts.map(Number);
-             // Basic validation for month and day
-            if (month < 1 || month > 12 || day < 1 || day > 31) {
-                 console.warn("Invalid date value encountered:", dateString);
-                 return dateString;
-            }
-            // Note: Months are 0-indexed in JavaScript Date objects
-            return new Date(year, month - 1, day).toLocaleDateString('en-AU', { day: '2-digit', month: '2-digit', year: 'numeric'});
-        } catch (error) {
-            console.error("Error formatting date:", dateString, error);
-            return dateString; // Return original string on error
-        }
-    }
 
     //html references
     const headerPatientName = document.getElementById('header-patient-name'); 
@@ -205,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     addInfoButton.addEventListener('click', () => {
-         alert('Add New Information button clicked! (Functionality not implemented yet)');
+         alert('button clicked');
          // window.location.href = `/add-patient-info?patientId=${PATIENT_ID_TO_DISPLAY}`;
     });
 
