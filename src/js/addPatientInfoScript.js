@@ -1,4 +1,4 @@
-changeEditTarget("allergy") //default, find better way
+changeEditTarget("reaction") //default, find better way
 
 document.addEventListener('DOMContentLoaded', () => {
     const PATIENT_ID_TO_DISPLAY = 'P001';
