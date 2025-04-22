@@ -72,10 +72,6 @@ body {
     grid-column: span 2;
 }
 
-.patient-info, .allergies, .conditions, .medications, .vaccinations {
-    color: #333;
-}
-
 .episodes-area {
     background-color: #f1f1f1;
     padding: 10px;
