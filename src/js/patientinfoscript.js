@@ -1,9 +1,9 @@
-//change for aws data retrieval (or keep as is for this example)
+//change for aws data retrieval
 function getPatientData(patientId) {
     const patient = db.patients.find(p => p.patientId === patientId);
     if (!patient) return null;
 
-    // Find associated data
+    //find associated data
     const episodes = db.episodes.filter(e => e.patientId === patientId);
     const medications = db.medications.filter(m => m.patientId === patientId);
     const conditions = db.conditions.filter(c => c.patientId === patientId);
@@ -19,7 +19,7 @@ function getPatientData(patientId) {
         medications,
         conditions,
         adverseReactions,
-        medicalStaff: db.medicalStaff, // Assuming we might need the full staff list
+        medicalStaff: db.medicalStaff,
         clinicalData,
         vaccinations
     };
@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Get references to the HTML elements
-    const headerPatientName = document.getElementById('header-patient-name'); // New header element
+    //html references
+    const headerPatientName = document.getElementById('header-patient-name'); 
     const patientIdSpan = document.getElementById('patient-id');
-    const patientNameSpan = document.getElementById('patient-name'); // Still useful inside the box
+    const patientNameSpan = document.getElementById('patient-name'); 
     const patientBirthdateSpan = document.getElementById('patient-birthdate');
     const patientAddressSpan = document.getElementById('patient-address');
     const patientBillingSpan = document.getElementById('patient-billing');
@@ -76,9 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const noMedicationsMsg = document.getElementById('no-medications-msg');
     const conditionsTbody = document.getElementById('conditions-tbody');
     const noConditionsMsg = document.getElementById('no-conditions-msg');
-    const reactionsTbody = document.getElementById('adverse-reactions-tbody'); // Corrected ID
+    const reactionsTbody = document.getElementById('adverse-reactions-tbody');
     const noReactionsMsg = document.getElementById('no-reactions-msg');
-    // Add references for vaccinations if you implement it
     const vaccinationsTbody = document.getElementById('vaccinations-tbody');
     const noVaccinationsMsg = document.getElementById('no-vaccinations-msg');
 
@@ -205,10 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
         noVaccinationsMsg.style.display = 'block';
     }
 
-    // Add event listener for the button (implement functionality later)
     addInfoButton.addEventListener('click', () => {
          alert('Add New Information button clicked! (Functionality not implemented yet)');
-         // Example: You might redirect to another page or open a modal form
          // window.location.href = `/add-patient-info?patientId=${PATIENT_ID_TO_DISPLAY}`;
     });
 
