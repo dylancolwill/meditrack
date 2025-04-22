@@ -21,13 +21,13 @@
                     </thead>
                     <tbody id="patient-tbody">
                         <tr>
-                            <td><input type="text"
+                            <td><input type="text" id="firstName"
                                     placeholder="First"></td>
-                            <td><input type="text"
+                            <td><input type="text" if="lastName"
                                     placeholder="Last"></td>
-                            <td><input type="text"
+                            <td><input type="text" id="patientAddress"
                                     placeholder="Address"></td>
-                            <td><input type="text"
+                            <td><input type="text" id="patientHealthcareProvider"
                                     placeholder="Provider"></td>
                         </tr>
                     </tbody>
@@ -35,10 +35,11 @@
             </article>
         </section>
         <div>
-            <button>save</button>
+            <button onclick="savePatient()">Save</button>
 
         </div>
 
+        <script src="js/newPatient.js"></script>
         <script src="js/patientScripts.js"></script>
         <script src="js/tempDB.js"></script>
 
