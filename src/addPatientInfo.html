@@ -23,7 +23,7 @@
         <div id="data-sections-container">
             <section id="allergy"
                 class="catagories-content">
-                <h2>Allergies</h2>
+                <h2>Reaction</h2>
                 <article>
                     <table border="1">
                         <thead> <tr>
@@ -61,8 +61,8 @@
                                 <th>Condition</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
-                                <th>Clinical Data ID</th>
-                                <th>Medication ID</th>
+                                <th>Clinical Data</th>
+                                <th>Medication</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -72,8 +72,10 @@
                                         placeholder="Condition Name"></td>
                                 <td><input type="date"></td>
                                 <td><input type="date"></td>
-                                <td><input type="text" placeholder="ID"></td>
-                                <td><input type="text" placeholder="ID"></td>
+                                <td><button type="button"
+                                        class="add-row-btn">Add</button></td>
+                                <td><button type="button"
+                                        class="add-row-btn">Add</button></td>
                                 <td><button type="button"
                                         class="add-row-btn">Done</button></td>
                             </tr>
@@ -127,7 +129,7 @@
                             <tr>
                                 <th>Vaccine</th>
                                 <th>Date Given</th>
-                                <th>Batch No.</th>
+                                <th>End Date</th>
                                 <th>Administered By</th>
                                 <th>Action</th>
                             </tr>
@@ -137,10 +139,9 @@
                                 <td><input type="text"
                                         placeholder="Vaccine Name"></td>
                                 <td><input type="date"></td>
-                                <td><input type="text"
-                                        placeholder="Batch Number"></td>
-                                <td><input type="text"
-                                        placeholder="Clinician Name"></td>
+                                <td><input type="date"></td>
+                                <td><button type="button"
+                                        class="add-row-btn">Add</button></td>
                                 <td><button type="button"
                                         class="add-row-btn">Done</button></td>
                             </tr>
@@ -185,7 +186,6 @@
                         <th>Procedures Results</th>
                         <th>Symptoms</th>
                         <th>Diagnosis</th>
-                        <th>Clinical Data Summary</th>
                     </tr>
                     <tbody id="clinical-tbody">
                         <tr>
@@ -200,8 +200,6 @@
                                     placeholder="Symptoms"></td>
                             <td><input type="text"
                                     placeholder="Diagnosis"></td>
-                            <td><input type="text"
-                                    placeholder="Clinical Data Summary"></td>
                             <td><button type="button"
                                     class="add-row-btn">Done</button></td>
                         </tr>
