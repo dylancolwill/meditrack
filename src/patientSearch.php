@@ -58,16 +58,21 @@ if (isset($_GET['search'])) {
     </div>
 
     <?php
-    if (!empty($searchTerm)) {
-        echo htmlspecialchars($searchTerm);
 
+    //search patient
+    if (!empty($searchTerm)) {
+        // echo htmlspecialchars($searchTerm);
+    
         $searchTerm = trim($searchTerm);
 
         $nameParts = explode(' ', $searchTerm);
 
-        $firstName = $nameParts[0];
-        $lastName = $nameParts[1];
+        if (count($nameParts) >= 2) {
+            $firstName = $nameParts[0];
+            $lastName = $nameParts[1];
+        }
 
+        //search patient
         $sql = "SELECT patientID, `fname`, `lname`
             FROM `patient`
             WHERE LOWER(`fname`) = LOWER(?)
@@ -87,18 +92,50 @@ if (isset($_GET['search'])) {
 
         $result = $stmt->get_result();
 
-
         if ($result->num_rows > 0) {
             echo "<br>";
             echo "searched: " . $searchTerm;
             while ($row = $result->fetch_assoc()) {
-                echo "<br>id " . htmlspecialchars($row['patientID']) . " - ";
+                $patientID = $row["patientID"];
+                echo "<br>id " . htmlspecialchars($patientID) . " - ";
                 echo htmlspecialchars($row['fname']) . " " . htmlspecialchars($row['lname']);
             }
+
+            $staffID = 1; //CHANGE !!!!
+            echo "work";
+            $episodeDate = date('Y-m-d H:i:s');
+            echo "work1";
+
+            var_dump($staffID, $patientID, $episodeDate);
+            echo "work2";
+            //create episode
+            $sql = "INSERT INTO `episode` (`episode_date`, `patientID`, `staffID`) VALUES (?, ?,?)";
+            echo "work3";
+
+            $stmt = $link->prepare($sql);
+            echo "work4";
+
+            if ($stmt === false) {
+                echo "work5";
+                echo "error" . htmlspecialchars(($link->error));
+                echo "work6";
+            } else {
+                echo "work7";
+                $stmt->bind_param("sii", $episodeDate, $patientID, $staffID);
+                echo "work8";
+                $stmt->execute();
+                echo "work9";
+
+            }
+            echo "work10";
+
+            header("Location: patientSearch.php");
+            exit;
         } else {
             echo "no patient found '" . htmlspecialchars($searchTerm);
         }
-        
+        echo "work11";
+
         $stmt->close();
     }
 
