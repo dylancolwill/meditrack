@@ -102,39 +102,27 @@ if (isset($_GET['search'])) {
             }
 
             $staffID = 1; //CHANGE !!!!
-            echo "work";
             $episodeDate = date('Y-m-d H:i:s');
-            echo "work1";
 
             var_dump($staffID, $patientID, $episodeDate);
-            echo "work2";
+
             //create episode
             $sql = "INSERT INTO `episode` (`episode_date`, `patientID`, `staffID`) VALUES (?, ?,?)";
-            echo "work3";
 
             $stmt = $link->prepare($sql);
-            echo "work4";
 
             if ($stmt === false) {
-                echo "work5";
                 echo "error" . htmlspecialchars(($link->error));
-                echo "work6";
             } else {
-                echo "work7";
                 $stmt->bind_param("sii", $episodeDate, $patientID, $staffID);
-                echo "work8";
                 $stmt->execute();
-                echo "work9";
-
             }
-            echo "work10";
 
             header("Location: patientSearch.php");
             exit;
         } else {
             echo "no patient found '" . htmlspecialchars($searchTerm);
         }
-        echo "work11";
 
         $stmt->close();
     }
