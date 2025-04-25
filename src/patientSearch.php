@@ -43,7 +43,8 @@ if (isset($_GET['search'])) {
             </div>
             <div class="row">
                 <form class="patientSearchForm">
-                    <input type="text" placeholder="Search.." name="search" id="pSearch" value="<?php echo htmlspecialchars($searchTerm); ?>>
+                    <input type="text" placeholder="Search.." name="search" id="pSearch"
+                        value="<?php echo htmlspecialchars($searchTerm); ?>">
                     <button type=" submit"><i class="fa fa-search" id="pButton"></i></button>
                 </form>
 
@@ -58,10 +59,50 @@ if (isset($_GET['search'])) {
 
     <?php
     if (!empty($searchTerm)) {
-        $sql = "SELECT patientID, fname, lname FROM patient WHERE fname LIKE ? OR lname LIKE ?";
-        $result = $link->query($sql);
-        echo"$result";
+        echo htmlspecialchars($searchTerm);
+
+        $searchTerm = trim($searchTerm);
+
+        $nameParts = explode(' ', $searchTerm);
+
+        $firstName = $nameParts[0];
+        $lastName = $nameParts[1];
+
+        $sql = "SELECT patientID, `fname`, `lname`
+            FROM `patient`
+            WHERE LOWER(`fname`) = LOWER(?)
+              AND LOWER(`lname`) = LOWER(?)";
+
+        $stmt = $link->prepare($sql);
+
+        if ($stmt === false) {
+            echo htmlspecialchars(($link->error));
+        }
+
+        $stmt->bind_param("ss", $firstName, $lastName);
+
+        if (!$stmt->execute()) {
+            echo htmlspecialchars(($stmt->error));
+        }
+
+        $result = $stmt->get_result();
+
+
+        if ($result->num_rows > 0) {
+            echo "<br>";
+            echo "searched: " . $searchTerm;
+            while ($row = $result->fetch_assoc()) {
+                echo "<br>id " . htmlspecialchars($row['patientID']) . " - ";
+                echo htmlspecialchars($row['fname']) . " " . htmlspecialchars($row['lname']);
+            }
+        } else {
+            echo "no patient found '" . htmlspecialchars($searchTerm);
+        }
+        
+        $stmt->close();
     }
+
+    $link->close();
     ?>
 </body>
 
