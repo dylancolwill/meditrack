@@ -22,15 +22,24 @@ echo "connected<br>";
 $catagories = $_POST["catagories"];
 
 switch ($catagories) {
-    case reaction:
-        $fname = $_POST["fname"];
-        var_dump($fname);
+    case reaction: //Double check to see if this will work.
+        $reaction_origin = $_POST["reaction_origin"];
+        $reactionInfo = $_POST["reactionInfo"];
+        $start_date = $_POST["start_date"];
+        $end_date = $_POST["end_date"];
+
+        var_dump($reaction_origin, $reaction_info, $start_date, $end_date);
         
-        $sql = "INSERT INTO `patient` (fname) VALUES ('$fname')";
+        $sql = "INSERT INTO `adversereactions` (reaction_origin, reaction, start_date, end_date) VALUES ('$reaction_origin', '$reactionInfo', '$start_date', '$end_date')";
       break;
-    case condition:
-      //code block;
-      break;
+    case vaccination:
+        $vaccineName = $_POST["vaccineName"];
+        $startDate = $_POST["startDate"];
+        $endDate = $_POST["endDate"];
+       
+        $sql = "INSERT INTO `vaccinations` (vaccination_name, vaccination_start, vaccination_end) VALUES ('$vaccineName', '$startDate', '$endDate')";
+        var_dump($vaccineName, $startDate, $endDate);
+        break;
     case medication:
       //code block
       break;
