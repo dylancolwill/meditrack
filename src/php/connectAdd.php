@@ -11,7 +11,6 @@ $db_name = 'medical2';
 $db_port = '3306';
 
 
-//User Inputted Variables
 $fname = $_POST["fname"];
 $lname = $_POST["lname"];
 $patientAddress = $_POST["patientAddress"];
