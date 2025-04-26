@@ -2,7 +2,7 @@
 session_start();
 
 include 'php/connectDB.php'; 
-include 'php/queryPatientInfo';?>
+include 'php/queryPatientInfo.php';?>
 
 <!DOCTYPE html>
 <html lang="en">

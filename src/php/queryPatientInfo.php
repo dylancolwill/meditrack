@@ -6,7 +6,9 @@ $medications = [];
 $vaccinations = [];
 $episodes = [];
 
-function sqlExecute($link, $sql, $params = [$patientID])
+$_SESSION['patID'] = $patientID;
+
+function sqlExecute($link, $sql, $params = $patientID)
 {
     $stmt = $link->prepare($sql);
     if (!$stmt) {
