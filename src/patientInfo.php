@@ -129,7 +129,7 @@
 
     
          <?php
-         include 'connectDisplay.php';
+         include 'php/connectDisplay.php';
        ?>
 
     </body>
