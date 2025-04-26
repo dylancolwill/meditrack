@@ -5,4 +5,4 @@ To do:
 - [ ] Add info 3/6
 - [x] Patient Search
 - [ ] Display patient info
-- [ ] Add new patient
+- [x] Add new patient
