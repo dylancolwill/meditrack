@@ -131,17 +131,18 @@ if (isset($_GET['search'])) {
     }
 
     
-    $_SESSION['patID'] = $patientID;
-    session_write_close();
+    
     $link->close();
     
     
     function redirect($url, $statusCode = 301) {
+        $_SESSION['patID'] = $patientID;
+        session_write_close();
         header("Location: " . $url, true, $statusCode);
         exit();
     }
 
-    // Usage
+    
     ?>
 </body>
 
