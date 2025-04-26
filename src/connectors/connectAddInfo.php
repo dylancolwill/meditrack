@@ -95,29 +95,29 @@ $catagories = $_POST['catagories'];
 
 switch ($catagories) {
     case 'reaction': //Double check to see if this will work.
-        $reaction_origin = $_POST["reaction_origin"];
-        $reactionInfo = $_POST["reactionInfo"];
-        $start_date = $_POST["start_date"];
-        $end_date = $_POST["end_date"];
+        $reaction_origin = $_POST['reaction_origin'];
+        $reactionInfo = $_POST['reactionInfo'];
+        $start_date = $_POST['start_date'];
+        $end_date = $_POST['end_date'];
         var_dump($reaction_origin, $reaction_info, $start_date, $end_date, $patientID); 
         $sql = "INSERT INTO `adversereactions` (reaction_origin, reaction, start_date, end_date, patientID) VALUES ('$reaction_origin', '$reactionInfo', '$start_date', '$end_date', '$patientID')";
         push($sql, $link, $patientID);
 
         break;
     case 'vaccination':
-        $vaccineName = $_POST["vaccineName"];
-        $startDate = $_POST["startDate"];
-        $endDate = $_POST["endDate"];
+        $vaccineName = $_POST['vaccineName'];
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
         var_dump($vaccineName, $startDate, $endDate,  $patientID);
         $sql = "INSERT INTO `vaccinations` (vaccination_name, vaccination_start, vaccination_end, patientID) VALUES ('$vaccineName', '$startDate', '$endDate', '$patientID')";
         push($sql, $link, $patientID);
 
         break;
     case 'medication':
-        $med_name = $_POST["med_name"];
-        $med_start = $_POST["med_start"];
-        $med_end = $_POST["med_end"];
-        $dosage = $_POST["dosage"];
+        $med_name = $_POST['med_name'];
+        $med_start = $_POST['med_start'];
+        $med_end = $_POST['med_end'];
+        $dosage = $_POST['dosage'];
        //var dump may not be needed this left commented to test var_dump($med_name, $med_start, $med_end, $dosage);
         $sql = "INSERT INTO `medication` (med_name, med_start, med_end, dosage, patientID, episodeID) VALUES ('$vaccineName', '$startDate', '$endDate', '$dosage', '$patientID', '$episodeID')";
         push($sql, $link, $patientID);
@@ -126,9 +126,9 @@ switch ($catagories) {
     case 'condition':
         $clinical = clincalCall($patientID, $link);
         $medication = medicalCall($patientID, $link);
-        $condit_name = $_POST["condit_name"];
-        $condit_start = $_POST["condit_start"];
-        $condit_end = $_POST["condit_end"];
+        $condit_name = $_POST['condit_name'];
+        $condit_start = $_POST['condit_start'];
+        $condit_end = $_POST['condit_end'];
         //var_dump($condit_name, $condit_start, $condit_end, $clinical, $patientID, $medication);
         $sql = "INSERT INTO `conditions` (condit_name, condit_start, condit_end, clinicalID, patientID, medicationID) VALUES ('$condit_name', '$condit_start', '$condit_end', '$clinical', '$patientID', '$medication')";
         push($sql, $link, $patientID);
@@ -136,11 +136,11 @@ switch ($catagories) {
         break;
 
     case 'clinical':
-        $proced_date = $_POST["proced_date"];
-        $proced_done = $_POST["proced_done"];
-        $proced_result = $_POST["proced_result"];
-        $signs = $_POST["signs"];
-        $diagnosis = $_POST["diagnosis"];
+        $proced_date = $_POST['proced_date'];
+        $proced_done = $_POST['proced_done'];
+        $proced_result = $_POST['proced_result'];
+        $signs = $_POST['signs'];
+        $diagnosis = $_POST['diagnosis'];
         //var_dump($proced_date, proced_done, $proced_result, $signs, $diagnosis, $episodeID);
         $sql = "INSERT INTO `clinicaldata` (proced_date, proced_done, proced_result, signs, diagnosis, episodeID) VALUES ('$proced_date', '$proced_done', '$proced_result', '$signs', '$diagnosis', '$episodeID')";
         push($sql, $link, $patientID);
