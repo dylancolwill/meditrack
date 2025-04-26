@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 $patientID = $_SESSION['patID'];
 ini_set('display_errors', 1); // Turn on error displaying
 error_reporting(E_ALL);     // Report all PHP errors
