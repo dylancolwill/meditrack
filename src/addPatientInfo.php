@@ -1,4 +1,4 @@
-<!-- <?php include 'php/connectAddInfo.php'; ?> -->
+<?php include 'php/connectAddInfo.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
