@@ -1,8 +1,8 @@
 <?php
 session_start();
-$patientID = $_SESSION['patID'];
 
-include 'php/connectDB.php'; ?>
+include 'php/connectDB.php'; 
+include 'php/queryPatientInfo';?>
 
 <!DOCTYPE html>
 <html lang="en">
