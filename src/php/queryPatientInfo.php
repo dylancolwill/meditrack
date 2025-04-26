@@ -69,29 +69,23 @@ $result = sqlExecute($link, "SELECT e.episodeID, e.episode_date, CONCAT(ms.fname
 addToList($result, $episodes);
 $result->free();
 
-if ($result) {
-    while ($row = $result->fetch_assoc()) {
-        $sqlClinical = "SELECT proced_done, diagnosis FROM clinicaldata WHERE episodeID = ?";
-        $resultClinical = sqlExecute($link, $sqlClinical, [$row['episodeID']]);
-        $clinicalSummaries = [];
-        if ($resultClinical) {
-            while ($clinicalRow = $resultClinical->fetch_assoc()) {
-                $summary = [];
-                if (!empty($clinicalRow['proced_done']))
-                    $summary[] = "Procedure: " . htmlspecialchars($clinicalRow['proced_done']);
-                if (!empty($clinicalRow['diagnosis']))
-                    $summary[] = "Diagnosis: " . htmlspecialchars($clinicalRow['diagnosis']);
-                if (!empty($summary))
-                    $clinicalSummaries[] = implode('; ', $summary);
-            }
-            $resultClinical->free();
+$updatedEpisodes = [];
+foreach ($episodes as $episode) { 
+    $sqlClinical = "SELECT proced_done, diagnosis FROM clinicaldata WHERE episodeID = ?";
+    $resultClinical = sqlExecute($link, $sqlClinical, $episode['episodeID']); 
+    $clinicalSummaries = [];
+    if ($resultClinical instanceof mysqli_result) {
+        while ($clinicalRow = $resultClinical->fetch_assoc()) { 
         }
-        $row['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) : 'No clinical data recorded';
-        $episodes[] = $row;
+        $resultClinical->free(); 
     }
-    // $resultEpisodes->free();
+    $episode['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) : 'No clinical data recorded';
+    $updatedEpisodes[] = $episode;
 }
+$episodes = $updatedEpisodes;
+
 $link->close();
+
 
 foreach ($adverseReactions as $row) {
     echo $row;
