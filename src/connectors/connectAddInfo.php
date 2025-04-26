@@ -164,7 +164,7 @@ switch ($catagories) {
       $stmt->execute();
   }
   // header("Location: patientSearch.php");
-  redirect("patientInfo.php", 301);
+  //redirect("patientInfo.php", 301);
   exit;
 
   }
