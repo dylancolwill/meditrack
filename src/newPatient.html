@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/patientInfoStyle.css">
+
+        <title>MediTrack</title>
+    </head>
+    <body>
+        <section id="patient">
+            <h2>New Patient</h2>
+            <article>
+                <table border="1">
+                    <thead> <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Address</th>
+                            <th>Healthcare Provider</th> </tr>
+                    </thead>
+                    <tbody id="patient-tbody">
+                        <tr>
+                            <td><input type="text" id="fname"
+                                    placeholder="First"></td>
+                            <td><input type="text" if="lname"
+                                    placeholder="Last"></td>
+                            <td><input type="text" id="patientAddress"
+                                    placeholder="Address"></td>
+                            <td><input type="text" id="patientHealthcareProvider"
+                                    placeholder="provider"></td>
+                            <td><input type="text" id="dateOfBirth"
+                                    placeholder="YYYY-MM-DD"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+        <div>
+            <a href="./patientInfo.html">
+            <button onclick="savePatient()">Save</button>
+            </a>
+        </div>
+
+        <script src="js/newPatient.js"></script>
+        <script src="js/patientScripts.js"></script>
+        <script src="js/tempDB.js"></script>
+        
+
+    </body>
+</html>

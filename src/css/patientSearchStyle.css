@@ -1,0 +1,35 @@
+#pSearch{
+    /* border-radius: 12px;
+ */
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #f1f1f1;
+}
+
+#pButton{
+    float: left;
+    width: 100%;
+    padding: 12px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+  
+}
+
+#pButton:hover{
+    background: #0b7dda;
+}
+
+#searchBacking{
+    /* background-color: gray; */
+    margin-top: 20em;
+}
+
+#newPatientButton{
+margin-top: 10px;
+border-radius: 12px;
+
+}

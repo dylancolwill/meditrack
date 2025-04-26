@@ -1,0 +1,144 @@
+<?php include 'php/connectDisplay.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MediTrack</title>
+        <link rel="stylesheet" href="css/patientInfoStyle.css"> </head>
+    <body>
+        <div class="container">
+            <header class="header-grid">
+                <h1 id="header-patient-name">information loading</h1>
+                <a href="./newPatient.html">
+                <button id="add-info-button"
+                    title="Add New Information">+</button>
+                </a>
+            </header>
+
+            <main class="content-grid">
+                <section id="patient-info-box" class="grid-item patient-info">
+                    <h2>Patient Information</h2>
+                    <article>
+                        <p><strong>ID:</strong> <span
+                                id="patient-id"></span></p>
+                        <p><strong>Name:</strong> <span
+                                id="patient-name"></span></p>
+                        <p><strong>Date of Birth:</strong> <span
+                                id="patient-birthdate"></span></p>
+                        <p><strong>Address:</strong> <span
+                                id="patient-address"></span></p>
+                        <p><strong>Billing:</strong> <span
+                                id="patient-billing"></span></p>
+                    </article>
+                </section>
+
+                <section class="grid-item allergies">
+                    <h2>Reactions</h2>
+                    <article>
+                        <table border="1">
+                            <tr>
+                                <th>Reaction</th>
+                                <th>Origin (Medication)</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                            </tr>
+                            <tbody id="adverse-reactions-tbody">
+                            </tbody>
+                        </table>
+                        <p id="no-reactions-msg" style="display: none;">No
+                            adverse reactions recorded.</p>
+                    </article>
+                </section>
+
+                <section class="grid-item conditions">
+                    <h2>Conditions</h2>
+                    <article>
+                        <table border="1">
+                            <tr>
+                                <th>Condition</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Clinical Data ID</th>
+                                <th>Medication ID</th>
+                            </tr>
+                            <tbody id="conditions-tbody">
+                            </tbody>
+                        </table>
+                        <p id="no-conditions-msg" style="display: none;">No
+                            conditions recorded.</p>
+                    </article>
+                </section>
+
+                <section class="grid-item medications">
+                    <h2>Medications</h2>
+                    <article>
+                        <table border="1">
+                            <tr>
+                                <th>Medication</th>
+                                <th>Dosage</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Prescribing Episode</th>
+                            </tr>
+                            <tbody id="medications-tbody">
+                            </tbody>
+                        </table>
+                        <p id="no-medications-msg" style="display: none;">No
+                            medications recorded.</p>
+                    </article>
+                </section>
+
+                <section class="grid-item vaccinations">
+                    <h2>Vaccinations</h2>
+                    <article>
+                        <table border="1">
+                            <tr>
+                                <th>Vaccine</th>
+                                <th>Date Given</th>
+                                <th>End Date</th>
+                                <th>Administered By</th>
+                            </tr>
+                            <tbody id="vaccinations-tbody">
+                            </tbody>
+                        </table>
+                        <p id="no-vaccinations-msg" style="display: none;">No
+                            vaccinations recorded for this patient.</p>
+                    </article>
+                </section>
+            </main>
+
+            <section class="episodes-area">
+                <h2>Episodes</h2>
+                <table border="1">
+                    <tr>
+                        <th>Episode ID</th>
+                        <th>Date</th>
+                        <th>Overseeing Staff</th>
+                        <th>Clinical Data Summary</th>
+                    </tr>
+                    <tbody id="episodes-tbody">
+                    </tbody>
+                </table>
+                <p id="no-episodes-msg" style="display: none;">No episodes
+                    recorded for this patient.</p>
+            </section>
+
+         <script src="js/patientInfoScript.js"></script>
+         <script src="js/patientScripts.js"></script>
+         <script src="js/tempDB.js"></script>
+    </body>
+</html>
+
+<script>
+    // const url ='http://127.0.0.1:3000/src/patientInfo.html?';
+
+    // const time = new Date();
+    // const jsonString = JSON.stringify(time);
+    // let sessionID = jsonString.charCodeAt();
+    
+    // const searchParams = new URLSearchParams(sessionID);
+
+    // const queryString = searchParams.toString();
+    // window.location.href = url + queryString;
+</script>
