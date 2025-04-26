@@ -20,7 +20,7 @@ if ($link->connect_error) {
 }
 
 echo "connected<br>";
-
+echo $patientID;
 
 $sql = "SELECT fname FROM patient WHERE patientID = $patientID";
 echo "work";
