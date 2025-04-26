@@ -121,7 +121,7 @@ if (isset($_GET['search'])) {
             }
 
             //header("Location: patientSearch.php");
-            redirect("patientInfo.html", 301);
+            redirect("patientInfo.php", 301);
             exit;
         } else {
             echo "no patient found '" . htmlspecialchars($searchTerm);
