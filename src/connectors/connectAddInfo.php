@@ -138,11 +138,11 @@ switch ($catagories) {
     case 'clinical':
         $proced_date = $_POST['proced_date'];
         $proced_done = $_POST['proced_done'];
-        $proced_result = $_POST['proced_result'];
+        $preced_result = $_POST['preced_result'];
         $signs = $_POST['signs'];
         $diagnosis = $_POST['diagnosis'];
         //var_dump($proced_date, proced_done, $proced_result, $signs, $diagnosis, $episodeID);
-        $sql = "INSERT INTO `clinicaldata` (proced_date, proced_done, proced_result, signs, diagnosis, episodeID) VALUES ('$proced_date', '$proced_done', '$preced_result', '$signs', '$diagnosis', '$episodeID')";
+        $sql = "INSERT INTO `clinicaldata` (proced_date, proced_done, preced_result, signs, diagnosis, episodeID) VALUES ('$proced_date', '$proced_done', '$preced_result', '$signs', '$diagnosis', '$episodeID')";
         push($sql, $link, $patientID);
         break;
     default:

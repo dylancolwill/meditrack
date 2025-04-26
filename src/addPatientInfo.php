@@ -142,7 +142,7 @@
                     <tr>
                         <td><input type="date" id="proced_date" name="proced_date"></td>
                         <td><input type="text" placeholder="Procedures" id="proced_done" name="proced_done"></td>
-                        <td><input type="text" placeholder="Results" id="proced_result" name="proced_result"></td>
+                        <td><input type="text" placeholder="Results" id="preced_result" name="preced_result"></td>
                         <td><input type="text" placeholder="Observations" id="signs" name="signs"></td>
                         <td><input type="text" placeholder="Diagnosis" id="diagnosis" name="diagnosis"></td>
                     </tr>
