@@ -37,10 +37,10 @@
                     </thead>
                     <tbody id="reaction-tbody">
                         <tr>
-                            <td><input type="text" placeholder="Reaction" id="reactionInfo"></td>
-                            <td><input type="text" placeholder="Reaction Trigger" id="reaction_origin"></td>
-                            <td><input type="date" id="start_date"></td>
-                            <td><input type="date" id="end_date"></td>
+                            <td><input type="text" placeholder="Reaction" id="reactionInfo" name ="reactionInfo"></td>
+                            <td><input type="text" placeholder="Reaction Trigger" id="reaction_origin" name="reaction_origin"></td>
+                            <td><input type="date" id="start_date" name="start_date"></td>
+                            <td><input type="date" id="end_date" name="end_date"></td>
 
                         </tr>
                     </tbody>
@@ -65,9 +65,9 @@
                     </thead>
                     <tbody id="condition-tbody">
                         <tr>
-                            <td><input type="text" placeholder="Condition Name" id="condit_name"></td>
-                            <td><input type="date" id="condit_start"></td>
-                            <td><input type="date" id="condit_end"></td>
+                            <td><input type="text" placeholder="Condition Name" id="condit_name" name="condit_name"></td>
+                            <td><input type="date" id="condit_start" name="condit_start"></td>
+                            <td><input type="date" id="condit_end" name="condit_end"></td>
                             <td><button type="button" class="add-row-btn">Add</button></td>
                             <td><button type="button" class="add-row-btn">Add</button></td>
                         </tr>
@@ -141,10 +141,10 @@
                 <tbody id="clinical-tbody">
                     <tr>
                         <td><input type="date" id="proced_date"></td>
-                        <td><input type="text" placeholder="Procedures" id="proced_done"></td>
-                        <td><input type="text" placeholder="Results" id="proced_result"></td>
-                        <td><input type="text" placeholder="Observations" id="signs"></td>
-                        <td><input type="text" placeholder="Diagnosis" id="diagnosis"></td>
+                        <td><input type="text" placeholder="Procedures" id="proced_done" name="proced_done"></td>
+                        <td><input type="text" placeholder="Results" id="proced_result" name="proced_result"></td>
+                        <td><input type="text" placeholder="Observations" id="signs" name="signs"></td>
+                        <td><input type="text" placeholder="Diagnosis" id="diagnosis" name="diagnosis"></td>
                     </tr>
                 </tbody>
             </table>
