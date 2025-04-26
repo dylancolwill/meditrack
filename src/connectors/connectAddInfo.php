@@ -142,7 +142,7 @@ switch ($catagories) {
         $signs = $_POST['signs'];
         $diagnosis = $_POST['diagnosis'];
         //var_dump($proced_date, proced_done, $proced_result, $signs, $diagnosis, $episodeID);
-        $sql = "INSERT INTO `clinicaldata` (proced_date, proced_done, proced_result, signs, diagnosis, episodeID) VALUES ('$proced_date', '$proced_done', '$proced_result', '$signs', '$diagnosis', '$episodeID')";
+        $sql = "INSERT INTO `clinicaldata` (proced_date, proced_done, proced_result, signs, diagnosis, episodeID) VALUES ('$proced_date', '$proced_done', '$preced_result', '$signs', '$diagnosis', '$episodeID')";
         push($sql, $link, $patientID);
         break;
     default:
