@@ -19,7 +19,7 @@ include 'php/queryPatientInfo.php';?>
         <div class="container">
             <header class="header-grid">
                 <h1 id="header-patient-name">information loading</h1>
-                <a href="./newPatient.html">
+                <a href="./addPatientInfo.php">
                 <button id="add-info-button"
                     title="Add New Information">+</button>
                 </a>
