@@ -119,8 +119,9 @@ if (isset($_GET['search'])) {
                 $stmt->bind_param("sii", $episodeDate, $patientID, $staffID);
                 $stmt->execute();
             }
-
-            //header("Location: patientSearch.php");
+            $_SESSION['patID'] = $patientID;
+            session_write_close();
+            // header("Location: patientSearch.php");
             redirect("patientInfo.php", 301);
             exit;
         } else {
@@ -130,14 +131,12 @@ if (isset($_GET['search'])) {
         $stmt->close();
     }
 
-    
-    
     $link->close();
     
     
     function redirect($url, $statusCode = 301) {
-        $_SESSION['patID'] = $patientID;
-        session_write_close();
+        
+        
         header("Location: " . $url, true, $statusCode);
         exit();
     }

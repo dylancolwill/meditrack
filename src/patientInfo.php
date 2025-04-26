@@ -1,3 +1,4 @@
+<?php include 'php/connectDisplay.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -126,12 +127,6 @@
          <script src="js/patientInfoScript.js"></script>
          <script src="js/patientScripts.js"></script>
          <script src="js/tempDB.js"></script>
-
-    
-         <?php
-         include 'php/connectDisplay.php';
-       ?>
-
     </body>
 </html>
 
