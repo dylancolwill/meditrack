@@ -91,7 +91,7 @@ function medicalCall($passthrough, $link){
     }
 
 //Determines what entity the user wants to update
-$catagories = $_POST["catagories"];
+$catagories = $_POST['catagories'];
 
 switch ($catagories) {
     case 'reaction': //Double check to see if this will work.
@@ -170,7 +170,7 @@ switch ($catagories) {
   }
 
 
-$link->query($sql);
+
 
 
 // echo "work";
