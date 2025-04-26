@@ -1,5 +1,4 @@
 <?php
-session_start();
 $patientID = $_SESSION['patID'];
 
 $patientData = [];
@@ -8,7 +7,6 @@ $conditions = [];
 $medications = [];
 $vaccinations = [];
 $episodes = [];
-
 
 function sqlExecute($link, $sql, $params = [])
 {
