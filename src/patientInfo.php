@@ -1,3 +1,13 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+
+include 'php/connectDB.php'; 
+include 'php/queryPatientInfo.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -126,12 +136,6 @@
          <script src="js/patientInfoScript.js"></script>
          <script src="js/patientScripts.js"></script>
          <script src="js/tempDB.js"></script>
-
-    
-         <?php
-         include 'connectDisplay.php';
-       ?>
-
     </body>
 </html>
 
