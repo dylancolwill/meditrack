@@ -1,4 +1,5 @@
 <?php
+session_start();
 $patientID = $_SESSION['patID'];
 
 $patientData = [];
@@ -8,7 +9,7 @@ $medications = [];
 $vaccinations = [];
 $episodes = [];
 
-function sqlExecute($link, $sql, $params = [])
+function sqlExecute($link, $sql, $params = $patientID)
 {
     $stmt = $link->prepare($sql);
     if (!$stmt) {
@@ -32,10 +33,11 @@ function addToList($result, $list = [])
             $list[] = $row;
         }
     }
+    $result->free();
 }
 
 //patient info
-$result = sqlExecute($link, "SELECT patientID, fname, lname, address, provider FROM patient WHERE patientID = ?", [$patientID]);
+$result = sqlExecute($link, "SELECT patientID, fname, lname, address, provider FROM patient WHERE patientID = ?");
 if ($result && $result->num_rows > 0) {
     $patientData = $result->fetch_assoc();
 } else {
@@ -44,24 +46,24 @@ if ($result && $result->num_rows > 0) {
 $result->free();
 
 //reaction
-$result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?", [$patientID]);
+$result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?");
 addToList($result, $adverseReactions);
 
 
 //condition
-$result = sqlExecute($link, "SELECT condit_name, condit_start, condit_end, clinicalID, medicationID FROM conditions WHERE patientID = ?", [$patientID]);
+$result = sqlExecute($link, "SELECT condit_name, condit_start, condit_end, clinicalID, medicationID FROM conditions WHERE patientID = ?");
 addToList($result, $conditions);
 
 //medications
-$result = sqlExecute($link, "SELECT med_name, dosage, med_start, med_end, episodeID FROM medication WHERE patientID = ?", [$patientID]);
+$result = sqlExecute($link, "SELECT med_name, dosage, med_start, med_end, episodeID FROM medication WHERE patientID = ?");
 addToList($result, $medications);
 
 //vaccinations
-$result = sqlExecute($link, "SELECT v.vaccination_name, v.vaccination_start, v.vaccination_end, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM vaccinations v LEFT JOIN medicalstaff ms ON v.staffID = ms.staffID WHERE v.patientID = ?", [$patientID]);
+$result = sqlExecute($link, "SELECT v.vaccination_name, v.vaccination_start, v.vaccination_end, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM vaccinations v LEFT JOIN medicalstaff ms ON v.staffID = ms.staffID WHERE v.patientID = ?");
 addToList($result, $vaccinations);
 
 //episodes
-$result = sqlExecute($link, "SELECT e.episodeID, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM episode e LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID Where e.patientID = ? ORDER BY e.episode_date DESC", [$patientID]);
+$result = sqlExecute($link, "SELECT e.episodeID, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM episode e LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID Where e.patientID = ? ORDER BY e.episode_date DESC");
 addToList($result, $episodes);
 
 if ($result) {
@@ -84,7 +86,7 @@ if ($result) {
         $row['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) : 'No clinical data recorded';
         $episodes[] = $row;
     }
-    $resultEpisodes->free();
+    // $resultEpisodes->free();
 }
 $link->close();
 
