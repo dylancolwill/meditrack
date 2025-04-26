@@ -24,7 +24,7 @@ $result = $link->query($sql);
 
 if ($result) {
     if ($result->num_rows > 0) {
-        echo "Patient Data:<br>";
+        echo "data :<br>";
         while($row = $result->fetch_assoc()) {
             foreach($row as $column_name => $column_value) {
                 echo "<strong>" . htmlspecialchars($column_name) . ":</strong> " . htmlspecialchars($column_value) . "<br>";
@@ -32,11 +32,11 @@ if ($result) {
             echo "<hr>"; 
         }
     } else {
-        echo "No patient records found.";
+        echo "nothing found";
     }
     $result->free();
 } else {
-    echo "Error executing query: (" . $link->errno . ") " . $link->error;
+    echo "error: (" . $link->errno . ") " . $link->error;
 }
 
 // $link->close();
