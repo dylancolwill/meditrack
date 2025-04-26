@@ -60,7 +60,7 @@ if (isset($_GET['search'])) {
 
     <?php
 
-    $patientID;
+    $patientID=0;
     //search patient
     if (!empty($searchTerm)) {
         // echo htmlspecialchars($searchTerm);
@@ -121,7 +121,7 @@ if (isset($_GET['search'])) {
             }
 
             //header("Location: patientSearch.php");
-            redirect("/patientInfo.html", 301);
+            redirect("patientInfo.html", 301);
             exit;
         } else {
             echo "no patient found '" . htmlspecialchars($searchTerm);
