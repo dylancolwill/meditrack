@@ -1,4 +1,4 @@
-<?php include 'php/connectAddInfo.php'; ?>
+<?php include 'connectors/connectAddInfo.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<form method="POST" action="php/connectAddInfo.php">
+<form method="POST" action="connectors/connectAddInfo.php">
     <label for="catagories">Select catagory:</label>
 
     <select onchange="onSelect()" name="catagories" id="catagories">
