@@ -23,7 +23,7 @@ echo "connected<br>";
 //Gets episode ID utilising patientID
 $edpsql ="SELECT episodeID FROM episode
 WHERE patientID = '$patientID'
-ORDER BY DATETIME desc
+ORDER BY episode_date desc
 LIMIT 1";
 
 $result = $link->query($edpsql);
@@ -46,7 +46,7 @@ if ($result) {
 function clincalCall($passthrough, $link){
 $clinsql ="SELECT clinicalID FROM episode
 WHERE patientID = '$passthrough'
-ORDER BY DATETIME desc
+ORDER BY proced_date desc
 LIMIT 1";
 
 $result = $link->query($clinsql);
@@ -70,7 +70,7 @@ if ($result) {
 function medicalCall($passthrough, $link){
     $medisql ="SELECT medicationID FROM episode
     WHERE patientID = '$passthrough'
-    ORDER BY DATETIME desc
+    ORDER BY med_start desc
     LIMIT 1";
     
     $result = $link->query($medisql);
