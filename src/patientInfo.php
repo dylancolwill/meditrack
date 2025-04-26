@@ -1,4 +1,9 @@
-<?php include 'php/connectDisplay.php'; ?>
+<?php
+session_start();
+$patientID = $_SESSION['patID'];
+
+include 'php/connectDB.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
