@@ -1,4 +1,7 @@
 <?php
+session_start();
+$_SESSION['patID'] = $patientID;
+session_write_close(); //used to allow other sessions to be opened 
 ini_set('display_errors', 1); // Turn on error displaying
 error_reporting(E_ALL);     // Report all PHP errors
 
@@ -19,7 +22,7 @@ if ($link->connect_error) {
 echo "connected<br>";
 
 
-$sql = "SELECT fname FROM patient";
+$sql = "SELECT fname FROM patient WHERE patientID = $patientID";
 echo "work";
 $result = $link->query($sql);
 echo "work2";
@@ -30,7 +33,7 @@ if ($result) {
             echo htmlspecialchars($row["fname"]) . "<br>";
         }
     } else {
-        echo "nothign found";
+        echo "nothing found";
     }
     $result->free();
 } else {
@@ -40,5 +43,6 @@ if ($result) {
 // $link->close();
 
 // echo "Connection closed.";
+
 
 ?>

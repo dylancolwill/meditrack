@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', 1); // Turn on error displaying
 error_reporting(E_ALL);     // Report all PHP errors
 
@@ -59,6 +60,7 @@ if (isset($_GET['search'])) {
 
     <?php
 
+    $patientID;
     //search patient
     if (!empty($searchTerm)) {
         // echo htmlspecialchars($searchTerm);
@@ -118,7 +120,8 @@ if (isset($_GET['search'])) {
                 $stmt->execute();
             }
 
-            header("Location: patientSearch.php");
+            //header("Location: patientSearch.php");
+            redirect("/patientInfo.html", 301);
             exit;
         } else {
             echo "no patient found '" . htmlspecialchars($searchTerm);
@@ -127,7 +130,18 @@ if (isset($_GET['search'])) {
         $stmt->close();
     }
 
+    
+    $_SESSION['patID'] = $patientID;
+    session_write_close();
     $link->close();
+    
+    
+    function redirect($url, $statusCode = 301) {
+        header("Location: " . $url, true, $statusCode);
+        exit();
+    }
+
+    // Usage
     ?>
 </body>
 
