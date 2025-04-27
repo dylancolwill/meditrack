@@ -54,15 +54,14 @@ $result->free();
 //reaction
 $result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?", [$patientID]);
 echo $patientID;
-// addToList($result, $adverseReactions);
-// if ($result instanceof mysqli_result) {
-//     while ($row = $result->fetch_assoc()) {
-//         $adverseReactions[] = $row;
-//     }
-// } else {
-//     echo "some error";
-// }
-add($result, $adverseReactions);
+
+if ($result instanceof mysqli_result) {
+    while ($row = $result->fetch_assoc()) {
+        $adverseReactions[] = $row;
+    }
+} else {
+    echo "some error";
+}
 
 // if ($result && $result->num_rows > 0) {
 //     $adverseReactions = $result->fetch_assoc();
@@ -73,22 +72,46 @@ $result->free();
 
 //condition
 $result = sqlExecute($link, "SELECT condit_name, condit_start, condit_end, clinicalID, medicationID FROM conditions WHERE patientID = ?", [$patientID]);
-add($result, $conditions);
+if ($result instanceof mysqli_result) {
+    while ($row = $result->fetch_assoc()) {
+        $contitions[] = $row;
+    }
+} else {
+    echo "some error";
+}
 $result->free();
 
 //medications
 $result = sqlExecute($link, "SELECT med_name, dosage, med_start, med_end, episodeID FROM medication WHERE patientID = ?", [$patientID]);
-add($result, $medications);
+if ($result instanceof mysqli_result) {
+    while ($row = $result->fetch_assoc()) {
+        $medications[] = $row;
+    }
+} else {
+    echo "some error";
+}
 $result->free();
 
 //vaccinations
 $result = sqlExecute($link, "SELECT v.vaccination_name, v.vaccination_start, v.vaccination_end, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM vaccinations v LEFT JOIN medicalstaff ms ON v.staffID = ms.staffID WHERE v.patientID = ?", [$patientID]);
-add($result, $vaccinations);
+if ($result instanceof mysqli_result) {
+    while ($row = $result->fetch_assoc()) {
+        $vaccinations[] = $row;
+    }
+} else {
+    echo "some error";
+}
 $result->free();
 
 //episodes
 $result = sqlExecute($link, "SELECT e.episodeID, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM episode e LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID Where e.patientID = ? ORDER BY e.episode_date DESC", [$patientID]);
-add($result, $episodes);
+if ($result instanceof mysqli_result) {
+    while ($row = $result->fetch_assoc()) {
+        $episodes[] = $row;
+    }
+} else {
+    echo "some error";
+}
 $result->free();
 
 $updatedEpisodes = [];
