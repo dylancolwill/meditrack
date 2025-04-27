@@ -60,10 +60,10 @@ include 'php/queryPatientInfo.php'; ?>
                             <tbody id="adverse-reactions-tbody">
                                 <?php foreach ($adverseReactions as $reaction): ?>
                                     <tr>
-                                        <td><?php safeEcho($reaction['reaction']); ?></td>
-                                        <td><?php safeEcho($reaction['reaction_origin']); ?></td>
-                                        <td><?php echo formatDate($reaction['start_date']); ?></td>
-                                        <td><?php echo formatDate($reaction['end_date']); ?></td>
+                                        <td><?php htmlspecialchars($value)?></td>
+                                        <td><?php safeEcho(isset($reaction['reaction_origin']) ? $reaction['reaction_origin'] : "error something") ?></td>
+                                        <!-- <td><?php echo formatDate($reaction['start_date']); ?></td> -->
+                                        <!-- <td><?php echo formatDate($reaction['end_date']); ?></td> -->
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
