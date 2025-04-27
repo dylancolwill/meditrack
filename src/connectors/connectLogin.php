@@ -17,7 +17,7 @@ $uName = $_POST['uName'];
 $pswd = $_POST['pswd'];
 
 
-$hashedPass = password_hash("$pswd", PASSWORD_DEFAULT);
+//$hashedPass = password_hash("$pswd", PASSWORD_DEFAULT);
  
 $sql = "SELECT pwords FROM loginInformation WHERE userName = '$uName' ";
 
