@@ -34,7 +34,7 @@ include 'php/queryPatientInfo.php'; ?>
                     <p><strong>Name:</strong> <span
                             id="patient-name"><?php safeEcho($patientData['fname'] . ' ' . $patientData['lname']); ?></span>
                     </p>
-                    <p><strong>Date of Birth:</strong> <span id="patient-birthdate">N/A (Not in DB)</span></p>
+                    <p><strong>Date of Birth:</strong> <span id="patient-birthdate"><?php echo(formatDate($patientData['day_of_birth'])); ?></span></p>
                     <p><strong>Address:</strong> <span
                             id="patient-address"><?php safeEcho($patientData['address']); ?></span></p>
                     <p><strong>Billing Provider:</strong> <span
@@ -58,6 +58,7 @@ include 'php/queryPatientInfo.php'; ?>
                                 </tr>
                             </thead>
                             <tbody id="adverse-reactions-tbody">
+                                <?php var_dump ($adverseReactions); ?>
                                 <?php foreach ($adverseReactions as $reaction): ?>
                                     <tr>
                                         <td><?php htmlspecialchars($reaction['reaction'])?></td>
