@@ -6,6 +6,6 @@ To do:
 - [x] Patient Search
 - [x] Display patient info
 - [x] Add new patient
-- [ ] Fix medication name not displaying
-- [ ] Fix vaccination name not displaying (or storing)
-- [ ] Vaccination not getting staff
+- [x] Fix medication name not displaying
+- [x] Fix vaccination name not displaying (or storing)
+- [x] Vaccination not getting staff
