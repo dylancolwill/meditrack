@@ -32,7 +32,7 @@ if ($result) {
 
 //gets clincal data
 function clincalCall($passthrough, $link){
-$clinsql ="SELECT clinicalID FROM episode
+$clinsql ="SELECT clinicalID FROM clinicaldata
 WHERE patientID = '$passthrough'
 ORDER BY proced_date desc
 LIMIT 1";
@@ -54,9 +54,9 @@ if ($result) {
 }
 }
 
-
+//medical
 function medicalCall($passthrough, $link){
-    $medisql ="SELECT medicationID FROM episode
+    $medisql ="SELECT medicationID FROM medication
     WHERE patientID = '$passthrough'
     ORDER BY med_start desc
     LIMIT 1";
