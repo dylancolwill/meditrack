@@ -11,6 +11,7 @@ $conditions = [];
 $medications = [];
 $vaccinations = [];
 $episodes = [];
+$clinicalEntries =[];
 
 // function sqlExecute($link, $sql, $params = [])
 // {
@@ -62,9 +63,9 @@ $stmt =("SELECT patientID, fname, lname, date_of_birth, address, provider FROM p
 $result = mysqli_query($link, $stmt);
 
 if ($result && $result->num_rows > 0) {
-    var_dump($patientData);
+    // var_dump($patientData);
     $patientData = $result->fetch_assoc();
-    var_dump($patientData);
+    // var_dump($patientData);
 } else {
     echo "patient retrieve error" . htmlspecialchars($patientID);
 }
