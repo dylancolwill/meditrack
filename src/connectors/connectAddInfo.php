@@ -163,8 +163,7 @@ switch ($catagories) {
       //$stmt->bind_param("sii", $episodeDate, $patientID, $staffID);
       $stmt->execute();
   }
-  // header("Location: patientSearch.php");
-  //redirect("patientInfo.php", 301);
+  redirect("patientInfo.php", 301);
   exit;
 
   }
