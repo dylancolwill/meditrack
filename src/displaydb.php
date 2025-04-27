@@ -1,9 +1,9 @@
 <?php
-include 'php/connectDB.php';
+include 'connectors/connectDB.php';
 
 echo "connected<br>";
 
-$sql = "SELECT * FROM patient";
+$sql = "SELECT * FROM clinicaldata";
 $result = $link->query($sql);
 
 if ($result) {
