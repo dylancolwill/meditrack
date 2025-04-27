@@ -40,6 +40,7 @@ function add($result, $list = [])
     }
 }
 
+$result->free();
 //patient info
 $result = sqlExecute($link, "SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = ?", [$patientID]);
 echo"patientid from query: ".$patientID.'<br>';
