@@ -45,6 +45,7 @@ $result = sqlExecute($link, "SELECT patientID, fname, lname, date_of_birth, addr
 echo"patientid from query: ".$patientID.'<br>';
 var_dump($result);
 if ($result && $result->num_rows > 0) {
+    var_dump($patientData);
     $patientData = $result->fetch_assoc();
     echo'<br>';
     var_dump($patientData);
