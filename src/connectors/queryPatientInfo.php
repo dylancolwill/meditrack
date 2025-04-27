@@ -42,6 +42,7 @@ function add($result, $list = [])
 
 //patient info
 $result = sqlExecute($link, "SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = ?", [$patientID]);
+echo"patientid from query: ".$patientID;
 if ($result && $result->num_rows > 0) {
     $patientData = $result->fetch_assoc();
 } else {
