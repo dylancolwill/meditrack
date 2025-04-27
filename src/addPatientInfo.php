@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <form method="POST">
+        <br>
         <label for="catagories">Select catagory:</label>
 
         <select onchange="onSelect()" name="catagories" id="catagories">
@@ -124,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <tr>
                                 <th>Vaccine</th>
                                 <th>Date Given</th>
-                                <th>End Date</th>
+                                <th>Booster Date</th>
                             </tr>
                         </thead>
                         <tbody id="vaccination-tbody">
@@ -167,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         </div>
         <div>
-            <br><br>
+            <br>
             <input type="submit" id="save_button" value="submit">
 
         </div>

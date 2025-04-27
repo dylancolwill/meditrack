@@ -150,7 +150,7 @@ include 'connectors/queryPatientInfo.php';
                                 <tr>
                                     <th>Vaccine</th>
                                     <th>Date Given</th>
-                                    <th>End Date</th>
+                                    <th>Booster Date</th>
                                     <th>Administered By</th>
                                 </tr>
                             </thead>
