@@ -9,7 +9,7 @@ include 'connectDB.php';
 // echo "connected<br>";
 
 //Gets episode ID utilising patientID
-$edpsql ="SELECT episodeID FROM episode
+$edpsql = "SELECT episodeID FROM episode
 WHERE patientID = '$patientID'
 ORDER BY episode_date desc
 LIMIT 1";
@@ -18,7 +18,7 @@ $result = $link->query($edpsql);
 
 if ($result) {
     if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             $episodeID = ($row["episodeID"]);
         }
     } else {
@@ -31,41 +31,43 @@ if ($result) {
 
 
 //gets clincal data
-function clincalCall($passthrough, $link){
-$clinsql ="SELECT clinicalID FROM clinicaldata
-WHERE patientID = '$passthrough'
+function clincalCall($passthrough, $link)
+{
+    $clinsql = "SELECT clinicalID FROM clinicaldata
+WHERE episodeID = '$passthrough'
 ORDER BY proced_date desc
 LIMIT 1";
 
-$result = $link->query($clinsql);
+    $result = $link->query($clinsql);
 
-if ($result) {
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
-            $clinicalID = ($row["clinicalID"]);
-            return $clinicalID;
+    if ($result) {
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $clinicalID = ($row["clinicalID"]);
+                return $clinicalID;
+            }
+        } else {
+            echo "nothing found";
         }
+        $result->free();
     } else {
-        echo "nothing found";
+        echo "error (" . $link->errno . ") " . $link->error;
     }
-    $result->free();
-} else {
-    echo "error (" . $link->errno . ") " . $link->error;
-}
 }
 
 //medical
-function medicalCall($passthrough, $link){
-    $medisql ="SELECT medicationID FROM medication
+function medicalCall($passthrough, $link)
+{
+    $medisql = "SELECT medicationID FROM medication
     WHERE patientID = '$passthrough'
     ORDER BY med_start desc
     LIMIT 1";
-    
+
     $result = $link->query($medisql);
-    
+
     if ($result) {
         if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
                 $medicationID = ($row["clinicalID"]);
                 return $medicationID;
             }
@@ -76,7 +78,7 @@ function medicalCall($passthrough, $link){
     } else {
         echo "error (" . $link->errno . ") " . $link->error;
     }
-    }
+}
 
 //Determines what entity the user wants to update
 $catagories = $_POST['catagories'];
@@ -106,7 +108,7 @@ switch ($catagories) {
         $med_start = $_POST['med_start'];
         $med_end = $_POST['med_end'];
         $dosage = $_POST['dosage'];
-       //var dump may not be needed this left commented to test var_dump($med_name, $med_start, $med_end, $dosage);
+        //var dump may not be needed this left commented to test var_dump($med_name, $med_start, $med_end, $dosage);
         $sql = "INSERT INTO `medication` (med_name, med_start, med_end, dosage, patientID, episodeID) VALUES ('$vaccineName', '$startDate', '$endDate', '$dosage', '$patientID', '$episodeID')";
         push($sql, $link, $patientID);
 
@@ -134,32 +136,34 @@ switch ($catagories) {
         push($sql, $link, $patientID);
         break;
     default:
-      echo "error";
+        echo "error";
         break;
 
     //return $sql;
 
-  }
-  
-  //Function to execute the SQL
-  function push($sql, $link, $patientID){
-  $stmt = $link->prepare($sql);
+}
 
-  if ($stmt === false) {
-      echo "error" . htmlspecialchars(($link->error));
-  } else {
-      //$stmt->bind_param("sii", $episodeDate, $patientID, $staffID);
-      $stmt->execute();
-  }
-  redirect("patientInfo.php", 301);
-  exit;
+//Function to execute the SQL
+function push($sql, $link, $patientID)
+{
+    $stmt = $link->prepare($sql);
 
-  }
+    if ($stmt === false) {
+        echo "error" . htmlspecialchars(($link->error));
+    } else {
+        //$stmt->bind_param("sii", $episodeDate, $patientID, $staffID);
+        $stmt->execute();
+    }
+    redirect("patientInfo.php", 301);
+    exit;
+
+}
 
 
-  function redirect($url, $statusCode = 301) {
-        
-        
+function redirect($url, $statusCode = 301)
+{
+
+
     header("Location: " . $url, true, $statusCode);
     exit();
 }
