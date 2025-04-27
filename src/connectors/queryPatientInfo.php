@@ -44,7 +44,7 @@ function add($result, $list = [])
 // $result = sqlExecute($link, "SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = ?", [$patientID]);
 
 
-$stmt = $link->prepare("SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = '$patientID'");
+$stmt = $link->prepare("SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = 5");
 // if (!$stmt) {
 //     die("prepare failed: (" . $link->errno . ") " . $link->error);
 // }
