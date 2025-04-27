@@ -46,7 +46,7 @@ echo"patientid from query: ".$patientID.'<br>';
 if ($result && $result->num_rows > 0) {
     $patientData = $result->fetch_assoc();
     echo'<br>';
-    var_dump($patientData)
+    var_dump($patientData);
 } else {
     echo "patient retrieve error" . htmlspecialchars($patientID);
 }
