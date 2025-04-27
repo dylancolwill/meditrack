@@ -22,35 +22,28 @@ $pswd = $_POST['pswd'];
 
 
 $hashedPass = password_hash("$pswd", PASSWORD_DEFAULT);
-
-$sql = "INSERT INTO `loginInformation` (userName, pwords) VALUES ('$uName', '$hashedPass')";
-$stmt = $link->prepare($sql);
-$stmt-> execute();
  
+$sql = "SELECT pwords FROM loginInformation WHERE userName = '$uName' ";
+echo "work";
+$result = $link->query($sql);
+echo "work2";
+if ($result) {
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $passwordVerify = $row["pwords"];
+        }
+    } else {
+        echo "nothing found";
+    }
+    $result->free();
+} else {
+    echo "error (" . $link->errno . ") " . $link->error;
+}
 
-//change this back in a sec
+if ($passwordVerify == "$hashedPass") {
+    redirect("patientSearch.php", 301);
 
-// $sql = "SELECT pwords FROM loginInformation WHERE userName = '$uName' ";
-// echo "work";
-// $result = $link->query($sql);
-// echo "work2";
-// if ($result) {
-//     if ($result->num_rows > 0) {
-//         while ($row = $result->fetch_assoc()) {
-//             $passwordVerify = $row["pwords"];
-//         }
-//     } else {
-//         echo "nothing found";
-//     }
-//     $result->free();
-// } else {
-//     echo "error (" . $link->errno . ") " . $link->error;
-// }
-
-// if ($passwordVerify == "$hashedPass") {
-//     redirect("patientSearch.php", 301);
-
-// }
+}
 
 
 
