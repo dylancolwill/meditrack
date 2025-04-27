@@ -70,7 +70,7 @@ if ($result && $result->num_rows > 0) {
 }
 // $result->free();
 mysqli_free_result($result);
-mysqli_close($link);
+// mysqli_close($link);
 
 //reaction
 $stmt =("SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = '$patientID'");
@@ -84,7 +84,7 @@ if ($result instanceof mysqli_result) {
     echo "some error";
 }
 mysqli_free_result($result);
-mysqli_close($link);
+// mysqli_close($link);
 
 //condition
 $stmt =("SELECT condit_name, condit_start, condit_end, clinicalID, medicationID FROM conditions WHERE patientID = '$patientID'");
@@ -99,7 +99,7 @@ if ($result instanceof mysqli_result) {
     echo "some error";
 }
 mysqli_free_result($result);
-mysqli_close($link);
+// mysqli_close($link);
 
 //medications
 $stmt =("SELECT med_name, dosage, med_start, med_end, episodeID FROM medication WHERE patientID = '$patientID'");
@@ -113,7 +113,7 @@ if ($result instanceof mysqli_result) {
     echo "some error";
 }
 mysqli_free_result($result);
-mysqli_close($link);
+// mysqli_close($link);
 
 //vaccinations
 $stmt =("SELECT v.vaccination_name, v.vaccination_start, v.vaccination_end, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM vaccinations v LEFT JOIN medicalstaff ms ON v.staffID = ms.staffID WHERE v.patientID = '$patientID'");
@@ -127,7 +127,7 @@ if ($result instanceof mysqli_result) {
     echo "some error";
 }
 mysqli_free_result($result);
-mysqli_close($link);
+// mysqli_close($link);
 
 //episodes
 $stmt =("SELECT e.episodeID, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM episode e LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID Where e.patientID = '$patientID'");
@@ -141,7 +141,7 @@ if ($result instanceof mysqli_result) {
     echo "some error";
 }
 mysqli_free_result($result);
-mysqli_close($link);
+// mysqli_close($link);
 
 //clinical
 $stmt =("SELECT cd.clinicalID, cd.episodeID, cd.proced_done, cd.diagnosis, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) as staff_name
@@ -159,7 +159,7 @@ if ($result instanceof mysqli_result) {
     echo "some error";
 }
 mysqli_free_result($result);
-mysqli_close($link);
+// mysqli_close($link);
 
 $updatedEpisodes = [];
 foreach ($episodes as $episode) {
