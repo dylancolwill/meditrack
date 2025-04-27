@@ -148,7 +148,8 @@ $stmt =("SELECT cd.clinicalID, cd.episodeID, cd.proced_done, cd.diagnosis, e.epi
 FROM clinicaldata cd
 JOIN episode e ON cd.episodeID = e.episodeID
 LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID
-WHERE e.patientID = '$patientID'");
+WHERE e.patientID = '$patientID'
+ORDER BY e.episode_date DESC");
 $result = mysqli_query($link, $stmt);
 
 if ($result instanceof mysqli_result) {
