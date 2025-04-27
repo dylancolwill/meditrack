@@ -3,7 +3,7 @@ include 'connectors/connectDB.php';
 
 echo "connected<br>";
 
-$sql = "SELECT * FROM medication";
+$sql = "SELECT * FROM patient";
 $result = $link->query($sql);
 
 if ($result) {

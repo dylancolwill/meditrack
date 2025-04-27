@@ -10,23 +10,24 @@ $conditions = [];
 $medications = [];
 $vaccinations = [];
 $episodes = [];
+$clinicalEntries =[];
 
-function sqlExecute($link, $sql, $params = [])
-{
-    $stmt = $link->prepare($sql);
-    if (!$stmt) {
-        die("prepare failed: (" . $link->errno . ") " . $link->error);
-    }
-    if (!empty([$params]) && !empty("i")) {
-        $stmt->bind_param("i", ...[$params]);
-    }
-    if (!$stmt->execute()) {
-        die("execute failed: (" . $stmt->errno . ") " . $stmt->error);
-    }
-    $result = $stmt->get_result();
-    $stmt->close();
-    return $result;
-}
+// function sqlExecute($link, $sql, $params = [])
+// {
+//     $stmt = $link->prepare($sql);
+//     if (!$stmt) {
+//         die("prepare failed: (" . $link->errno . ") " . $link->error);
+//     }
+//     if (!empty([$params]) && !empty("i")) {
+//         $stmt->bind_param("i", ...[$params]);
+//     }
+//     if (!$stmt->execute()) {
+//         die("execute failed: (" . $stmt->errno . ") " . $stmt->error);
+//     }
+//     $result = $stmt->get_result();
+//     $stmt->close();
+//     return $result;
+// }
 
 function add($result, $list = [])
 {
@@ -40,16 +41,40 @@ function add($result, $list = [])
 }
 
 //patient info
-$result = sqlExecute($link, "SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = ?", [$patientID]);
+// $result = sqlExecute($link, "SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = ?", [$patientID]);
+
+
+$stmt =("SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = '$patientID'");
+// if (!$stmt) {
+//     die("prepare failed: (" . $link->errno . ") " . $link->error);
+// }
+// if (!empty([$params]) && !empty("i")) {
+//     $stmt->bind_param("i", ...[$params]);
+// }
+// if (!$stmt->execute()) {
+//     die("execute failed: (" . $stmt->errno . ") " . $stmt->error);
+// }
+$result = mysqli_query($link, $stmt);
+// $stmt->close();
+
+
+$stmt =("SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = '$patientID'");
+$result = mysqli_query($link, $stmt);
+
 if ($result && $result->num_rows > 0) {
+    // var_dump($patientData);
     $patientData = $result->fetch_assoc();
+    // var_dump($patientData);
 } else {
     echo "patient retrieve error" . htmlspecialchars($patientID);
 }
-$result->free();
+// $result->free();
+mysqli_free_result($result);
+// mysqli_close($link);
 
 //reaction
-$result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?", [$patientID]);
+$stmt =("SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = '$patientID'");
+$result = mysqli_query($link, $stmt);
 
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
@@ -58,10 +83,13 @@ if ($result instanceof mysqli_result) {
 } else {
     echo "some error";
 }
-$result->free();
+mysqli_free_result($result);
+// mysqli_close($link);
 
 //condition
-$result = sqlExecute($link, "SELECT condit_name, condit_start, condit_end, clinicalID, medicationID FROM conditions WHERE patientID = ?", [$patientID]);
+$stmt =("SELECT condit_name, condit_start, condit_end, clinicalID, medicationID FROM conditions WHERE patientID = '$patientID'");
+$result = mysqli_query($link, $stmt);
+
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
         $conditions[] = $row;
@@ -70,10 +98,13 @@ if ($result instanceof mysqli_result) {
 } else {
     echo "some error";
 }
-$result->free();
+mysqli_free_result($result);
+// mysqli_close($link);
 
 //medications
-$result = sqlExecute($link, "SELECT med_name, dosage, med_start, med_end, episodeID FROM medication WHERE patientID = ?", [$patientID]);
+$stmt =("SELECT med_name, dosage, med_start, med_end, episodeID FROM medication WHERE patientID = '$patientID'");
+$result = mysqli_query($link, $stmt);
+
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
         $medications[] = $row;
@@ -81,10 +112,13 @@ if ($result instanceof mysqli_result) {
 } else {
     echo "some error";
 }
-$result->free();
+mysqli_free_result($result);
+// mysqli_close($link);
 
 //vaccinations
-$result = sqlExecute($link, "SELECT v.vaccination_name, v.vaccination_start, v.vaccination_end, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM vaccinations v LEFT JOIN medicalstaff ms ON v.staffID = ms.staffID WHERE v.patientID = ?", [$patientID]);
+$stmt =("SELECT v.vaccination_name, v.vaccination_start, v.vaccination_end, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM vaccinations v LEFT JOIN medicalstaff ms ON v.staffID = ms.staffID WHERE v.patientID = '$patientID'");
+$result = mysqli_query($link, $stmt);
+
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
         $vaccinations[] = $row;
@@ -92,10 +126,13 @@ if ($result instanceof mysqli_result) {
 } else {
     echo "some error";
 }
-$result->free();
+mysqli_free_result($result);
+// mysqli_close($link);
 
 //episodes
-$result = sqlExecute($link, "SELECT e.episodeID, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM episode e LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID Where e.patientID = ? ORDER BY e.episode_date DESC", [$patientID]);
+$stmt =("SELECT e.episodeID, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM episode e LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID Where e.patientID = '$patientID'");
+$result = mysqli_query($link, $stmt);
+
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
         $episodes[] = $row;
@@ -103,15 +140,18 @@ if ($result instanceof mysqli_result) {
 } else {
     echo "some error";
 }
-$result->free();
+mysqli_free_result($result);
+// mysqli_close($link);
 
 //clinical
-$result = sqlExecute($link, "SELECT cd.clinicalID, cd.episodeID, cd.proced_done, cd.diagnosis, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) as staff_name
+$stmt =("SELECT cd.clinicalID, cd.episodeID, cd.proced_done, cd.diagnosis, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) as staff_name
 FROM clinicaldata cd
 JOIN episode e ON cd.episodeID = e.episodeID
 LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID
-WHERE e.patientID = ?
-ORDER BY e.episode_date DESC, cd.clinicalID ASC", [$patientID]);
+WHERE e.patientID = '$patientID'
+ORDER BY e.episode_date DESC");
+$result = mysqli_query($link, $stmt);
+
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
         $clinicalEntries[] = $row;
@@ -119,28 +159,29 @@ if ($result instanceof mysqli_result) {
 } else {
     echo "some error";
 }
-$result->free();
+mysqli_free_result($result);
+// mysqli_close($link);
 
 $updatedEpisodes = [];
 foreach ($episodes as $episode) {
     $clinicalSummaries = [];
     foreach ($clinicalEntries as $entry) {
-        if($entry['episodeID'] == $episode['episodeID']) {
+        if ($entry['episodeID'] == $episode['episodeID']) {
             $summaryParts = [];
-            if(!empty($entry['proced_done'])) {
-                $summaryParts[] = "Procedure: ".htmlspecialchars($entry["proced_done"], ENT_QUOTES,'UTF-8');
+            if (!empty($entry['proced_done'])) {
+                $summaryParts[] = "Procedure: " . htmlspecialchars($entry["proced_done"], ENT_QUOTES, 'UTF-8');
             }
-            if(!empty($entry['diagnosis'])) {
-                $summaryParts[] = "Diagnosis: ".htmlspecialchars($entry["diagnosis"], ENT_QUOTES,'UTF-8');
+            if (!empty($entry['diagnosis'])) {
+                $summaryParts[] = "Diagnosis: " . htmlspecialchars($entry["diagnosis"], ENT_QUOTES, 'UTF-8');
             }
 
-            if(!empty($summaryParts)) {
+            if (!empty($summaryParts)) {
                 $summaryString = implode(' - ', $summaryParts);
                 $clinicalSummaries[] = $summaryString;
             }
         }
     }
-    $episode['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) :'None';
+    $episode['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) : 'None';
     $updatedEpisodes[] = $episode;
 }
 $episodes = $updatedEpisodes;
@@ -173,5 +214,4 @@ function safeEcho($value, $default = 'N/A')
 {
     echo (!empty($value) || $value === '0') ? htmlspecialchars($value) : $default;
 }
-
 ?>

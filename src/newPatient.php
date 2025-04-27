@@ -88,15 +88,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </section>
 
-    <script src="js/newPatient.js"></script>
+    <!-- <script src="js/newPatient.js"></script>
     <script src="js/patientScripts.js"></script>
-    <script src="js/tempDB.js"></script>
+    <script src="js/tempDB.js"></script> -->
 </body>
 
 </html>
-
-<?php
-if ($link) {
-    $link->close();
-}
-?>
