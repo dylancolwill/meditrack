@@ -73,22 +73,22 @@ $result->free();
 
 //condition
 $result = sqlExecute($link, "SELECT condit_name, condit_start, condit_end, clinicalID, medicationID FROM conditions WHERE patientID = ?", [$patientID]);
-addToList($result, $conditions);
+add($result, $conditions);
 $result->free();
 
 //medications
 $result = sqlExecute($link, "SELECT med_name, dosage, med_start, med_end, episodeID FROM medication WHERE patientID = ?", [$patientID]);
-addToList($result, $medications);
+add($result, $medications);
 $result->free();
 
 //vaccinations
 $result = sqlExecute($link, "SELECT v.vaccination_name, v.vaccination_start, v.vaccination_end, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM vaccinations v LEFT JOIN medicalstaff ms ON v.staffID = ms.staffID WHERE v.patientID = ?", [$patientID]);
-addToList($result, $vaccinations);
+add($result, $vaccinations);
 $result->free();
 
 //episodes
 $result = sqlExecute($link, "SELECT e.episodeID, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) AS staff_name FROM episode e LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID Where e.patientID = ? ORDER BY e.episode_date DESC", [$patientID]);
-addToList($result, $episodes);
+add($result, $episodes);
 $result->free();
 
 $updatedEpisodes = [];
