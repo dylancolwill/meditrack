@@ -65,7 +65,7 @@ $result = sqlExecute($link, "SELECT condit_name, condit_start, condit_end, clini
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
         $contitions[] = $row;
-        safeEcho($row);
+        // safeEcho($row);
     }
 } else {
     echo "some error";
