@@ -110,7 +110,7 @@ $sqlClinical = sqlExecute($link, "SELECT cd.clinicalID, cd.episodeID, cd.proced_
 FROM clinicaldata cd
 JOIN episode e ON cd.episodeID = e.episodeID
 LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID
-WHERE e.patient = ?
+WHERE e.patientID = ?
 ORDER BY e.episode_date DESC, cd.clinicalID ASC", [$patientID]);
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
