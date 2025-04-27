@@ -24,16 +24,10 @@ $pswd = $_POST['pswd'];
 $hashedPass = password_hash("$pswd", PASSWORD_DEFAULT);
 
 
-$sql = "INSERT INTO `loginInformation` (userName, pwords) VALUES ('$uName', '$reactipswdonInfo')";
+$sql = "INSERT INTO `loginInformation` (userName, pwords) VALUES ('$uName', '$hashedPass')";
 $stmt = $link->prepare($sql);
-
-  if ($stmt === false) {
-      echo "error" . htmlspecialchars(($link->error));
-  } else {
-      //$stmt->bind_param("sii", $episodeDate, $patientID, $staffID);
-      $stmt->execute();
-  }
-  exit;
+$stmt-> execute();
+ 
 
 //change this back in a sec
 
