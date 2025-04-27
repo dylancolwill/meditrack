@@ -1,8 +1,6 @@
 <?php
 session_start();
 $patientID = $_SESSION['patID'];
-echo "patientid:" . $patientID;
-
 
 include 'php/connectDB.php';
 
@@ -21,7 +19,6 @@ function sqlExecute($link, $sql, $params = [])
     }
     if (!empty([$params]) && !empty("i")) {
         $stmt->bind_param("i", ...[$params]);
-        echo " testexec<br>";
     }
     if (!$stmt->execute()) {
         die("execute failed: (" . $stmt->errno . ") " . $stmt->error);
@@ -53,7 +50,6 @@ $result->free();
 
 //reaction
 $result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?", [$patientID]);
-echo $patientID;
 
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
