@@ -3,8 +3,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+
 // session_start();
-include 'connectors/queryPatientInfo.php'; ?>
+include 'connectors/queryPatientInfo.php'; 
+// var_dump($patientData);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,7 +150,7 @@ include 'connectors/queryPatientInfo.php'; ?>
                                 <tr>
                                     <th>Vaccine</th>
                                     <th>Date Given</th>
-                                    <th>End Date</th>
+                                    <th>Booster Date</th>
                                     <th>Administered By</th>
                                 </tr>
                             </thead>
