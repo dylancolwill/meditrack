@@ -62,12 +62,6 @@ if ($result instanceof mysqli_result) {
 } else {
     echo "some error";
 }
-
-// if ($result && $result->num_rows > 0) {
-//     $adverseReactions = $result->fetch_assoc();
-// } else {
-//     echo "patient retrieve error" . htmlspecialchars($patientID);
-// }
 $result->free();
 
 //condition
@@ -130,14 +124,6 @@ foreach ($episodes as $episode) {
 $episodes = $updatedEpisodes;
 
 $link->close();
-
-
-// foreach ($adverseReactions as $row) {
-//     echo $row;
-//     echo "testHERE<br>";
-// }
-
-
 
 function formatDate($dateString, $format = 'd-m-Y')
 {

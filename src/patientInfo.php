@@ -58,7 +58,6 @@ include 'php/queryPatientInfo.php'; ?>
                                 </tr>
                             </thead>
                             <tbody id="adverse-reactions-tbody">
-                                <?php var_dump ($adverseReactions); ?>
                                 <?php foreach ($adverseReactions as $reaction): ?>
                                     <tr>
                                         <td><?php safeEcho(isset($reaction['reaction']) ? $reaction['reaction'] : "error grabbing") ?></td>
@@ -186,7 +185,7 @@ include 'php/queryPatientInfo.php'; ?>
                         <?php foreach ($episodes as $episode): ?>
                             <tr>
                                 <td><?php safeEcho($episode['episodeID']); ?></td>
-                                <td><?php echo formatDate($episode['episode_date'], 'Y-m-d H:i'); ?></td>//show time too?
+                                <td><?php echo formatDate($episode['episode_date'], 'Y-m-d H:i'); ?></td>
                                 <td><?php safeEcho($episode['staff_name'], 'Unknown Staff'); ?></td>
                                 <td><?php echo $episode['clinical_summary']; ?></td>
                             </tr>
