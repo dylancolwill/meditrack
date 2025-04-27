@@ -20,7 +20,7 @@ include 'php/queryPatientInfo.php'; ?>
         <header class="header-grid">
             <h1 id="header-patient-name">
                 <?php safeEcho($patientData['fname'] . ' ' . $patientData['lname'], 'Patient Information'); ?></h1>
-            <a href="./newPatient.html?patientID=<?php echo $patientID; ?>">
+            <a href="./addPatientInfo.php">
                 <button id="add-info-button" title="Add New Information">+</button>
             </a>
         </header>
