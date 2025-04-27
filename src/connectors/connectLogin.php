@@ -23,7 +23,7 @@ $pswd = $_POST['pswd'];
 
 $hashedPass = password_hash("$pswd", PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO `loginInformation` (userName, pwords) VALUES ('$uName', '$pswd')";
+$sql = "INSERT INTO `loginInformation` (userName, pwords) VALUES ('$uName', '$hashedPass')";
 $stmt = $link->prepare($sql);
 $stmt-> execute();
  
