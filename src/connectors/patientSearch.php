@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include 'php/connectDB.php';
+include 'connectors/connectDB.php';
 
 $searchTerm = '';
 if (isset($_GET['search'])) {

@@ -1,5 +1,5 @@
 <?php
-include 'php/connectDB.php';
+include 'conenctors/connectDB.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['fname'], $_POST['lname'], $_POST['patientAddress'], $_POST['patientHealthcareProvider'], $_POST['dateOfBirth'])) {
