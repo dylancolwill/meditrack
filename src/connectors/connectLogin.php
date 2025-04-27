@@ -34,8 +34,8 @@ if ($result) {
             if ($passwordVerify == $hashedPass) {
                 echo "worked";
                 redirect("patientSearch.php", 301);
-                
-    
+            }elseif($passwordVerify != $hashedPass){
+                echo "fail";
             }
         }
 
