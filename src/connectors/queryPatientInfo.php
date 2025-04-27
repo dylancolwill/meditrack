@@ -2,7 +2,7 @@
 session_start();
 $patientID = $_SESSION['patID'];
 
-include 'php/connectDB.php';
+include 'connectDB.php';
 
 $patientData = [];
 $adverseReactions = [];

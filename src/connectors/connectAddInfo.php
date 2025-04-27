@@ -4,7 +4,7 @@ $patientID = $_SESSION['patID'];
 ini_set('display_errors', 1); // Turn on error displaying
 error_reporting(E_ALL);     // Report all PHP errors
 
-include 'connectors/connectDB.php';
+include 'connectDB.php';
 
 // echo "connected<br>";
 

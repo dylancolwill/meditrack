@@ -1,6 +1,6 @@
 <?php
 
-include 'connectors/connectDB.php';
+include 'connectDB.php';
 
 $uName = $_POST['uName'];
 $pswd = $_POST['pswd'];
