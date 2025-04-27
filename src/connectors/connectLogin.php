@@ -1,9 +1,5 @@
 <?php
 
-ini_set('display_errors', 1); // Turn on error displaying
-error_reporting(E_ALL);     // Report all PHP errors
-
-
 $db_host = 'database-1.cxomy0mse0pi.ap-southeast-2.rds.amazonaws.com';
 $db_user = 'admin';
 $db_pass = 'admin123!';
