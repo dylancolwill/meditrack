@@ -68,7 +68,7 @@ function medicalCall($passthrough, $link)
     if ($result) {
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $medicationID = ($row["clinicalID"]);
+                $medicationID = ($row["medicationID"]);
                 return $medicationID;
             }
         } else {
@@ -114,7 +114,7 @@ switch ($catagories) {
 
         break;
     case 'condition':
-        $clinical = clincalCall($patientID, $link);
+        $clinical = clincalCall($episodeID, $link);
         $medication = medicalCall($patientID, $link);
         $condit_name = $_POST['condit_name'];
         $condit_start = $_POST['condit_start'];
