@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 
 // session_start();
 include 'connectors/queryPatientInfo.php'; 
-var_dump($patientData);
+// var_dump($patientData);
 ?>
 <!DOCTYPE html>
 <html lang="en">
