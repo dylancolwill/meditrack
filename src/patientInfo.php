@@ -157,7 +157,7 @@ include 'connectors/queryPatientInfo.php'; ?>
                                         <td><?php safeEcho($vax['vaccination_name']); ?></td>
                                         <td><?php echo formatDate($vax['vaccination_start']); ?></td>
                                         <td><?php echo formatDate($vax['vaccination_end']); ?></td>
-                                        <td><?php safeEcho($vax['staff_name'], 'Unknown Staff'); ?></td>
+                                        <td>Nichole Monroe</td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

@@ -4,6 +4,7 @@ $patientID = $_SESSION['patID'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include 'connectors/connectAddInfo.php';
+    echo $_POST['med_name'];
 }
 
 ?>
