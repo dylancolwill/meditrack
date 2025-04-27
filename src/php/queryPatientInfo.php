@@ -21,7 +21,7 @@ function sqlExecute($link, $sql, $params = [])
     }
     if (!empty([$params]) && !empty("i")) {
         $stmt->bind_param("i", ...[$params]);
-        echo"test";
+        echo" testexec<br>";
     }
     if (!$stmt->execute()) {
         die("execute failed: (" . $stmt->errno . ") " . $stmt->error);
@@ -95,7 +95,7 @@ $link->close();
 
 foreach ($adverseReactions as $row) {
     echo $row;
-    echo"test";
+    echo"testHERE<br>";
 }
 
 
