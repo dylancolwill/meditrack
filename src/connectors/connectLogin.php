@@ -35,10 +35,10 @@ if ($result) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $passwordVerify = $row["pwords"];
-            if (password_verify($passwordVerify,$hashedPass) == 1) {
+            if (password_verify($pswd,$passwordVerify)) {
                 echo "worked";
                 redirect("patientSearch.php", 301);
-            }elseif($passwordVerify != $hashedPass){
+            }else{
                 echo "fail";
             }
         }
