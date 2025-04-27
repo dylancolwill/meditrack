@@ -12,7 +12,7 @@ $medications = [];
 $vaccinations = [];
 $episodes = [];
 
-function sqlExecute($link, $sql, $params = [])
+function sqlExecute($link, $sql, $params)
 {
     $stmt = $link->prepare($sql);
     if (!$stmt) {
@@ -177,6 +177,4 @@ function safeEcho($value, $default = 'N/A')
 {
     echo (!empty($value) || $value === '0') ? htmlspecialchars($value) : $default;
 }
-$result->free();
-$result->close();
 ?>
