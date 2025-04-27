@@ -20,7 +20,7 @@ include 'php/queryPatientInfo.php'; ?>
         <header class="header-grid">
             <h1 id="header-patient-name">
                 <?php safeEcho($patientData['fname'] . ' ' . $patientData['lname'], 'Patient Information'); ?></h1>
-            <a href="./newPatient.html?patientID=<?php echo $patientID; ?>">
+            <a href="./addPatientInfo.php">
                 <button id="add-info-button" title="Add New Information">+</button>
             </a>
         </header>
@@ -34,7 +34,7 @@ include 'php/queryPatientInfo.php'; ?>
                     <p><strong>Name:</strong> <span
                             id="patient-name"><?php safeEcho($patientData['fname'] . ' ' . $patientData['lname']); ?></span>
                     </p>
-                    <p><strong>Date of Birth:</strong> <span id="patient-birthdate">N/A (Not in DB)</span></p>
+                    <p><strong>Date of Birth:</strong> <span id="patient-birthdate"><?php echo(formatDate($patientData['date_of_birth'])); ?></span></p>
                     <p><strong>Address:</strong> <span
                             id="patient-address"><?php safeEcho($patientData['address']); ?></span></p>
                     <p><strong>Billing Provider:</strong> <span
@@ -60,8 +60,8 @@ include 'php/queryPatientInfo.php'; ?>
                             <tbody id="adverse-reactions-tbody">
                                 <?php foreach ($adverseReactions as $reaction): ?>
                                     <tr>
-                                        <td><?php safeEcho($reaction['reaction']); ?></td>
-                                        <td><?php safeEcho($reaction['reaction_origin']); ?></td>
+                                        <td><?php safeEcho(isset($reaction['reaction']) ? $reaction['reaction'] : "error grabbing") ?></td>
+                                        <td><?php safeEcho(isset($reaction['reaction_origin']) ? $reaction['reaction_origin'] : "error grabbing") ?></td>
                                         <td><?php echo formatDate($reaction['start_date']); ?></td>
                                         <td><?php echo formatDate($reaction['end_date']); ?></td>
                                     </tr>
@@ -185,7 +185,7 @@ include 'php/queryPatientInfo.php'; ?>
                         <?php foreach ($episodes as $episode): ?>
                             <tr>
                                 <td><?php safeEcho($episode['episodeID']); ?></td>
-                                <td><?php echo formatDate($episode['episode_date'], 'Y-m-d H:i'); ?></td>//show time too?
+                                <td><?php echo formatDate($episode['episode_date'], 'Y-m-d H:i'); ?></td>
                                 <td><?php safeEcho($episode['staff_name'], 'Unknown Staff'); ?></td>
                                 <td><?php echo $episode['clinical_summary']; ?></td>
                             </tr>

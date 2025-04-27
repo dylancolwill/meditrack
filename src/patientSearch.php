@@ -106,7 +106,7 @@ if (isset($_GET['search'])) {
                 $stmt->execute();
             }
             $_SESSION['patID'] = $patientID;
-            session_write_close();
+            // session_write_close();
             // header("Location: patientSearch.php");
             redirect("patientInfo.php", 301);
             exit;
