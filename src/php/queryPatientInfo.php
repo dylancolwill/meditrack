@@ -1,10 +1,10 @@
 <?php
 session_start();
 $patientID = $_SESSION['patID'];
-echo "patientid:".$patientID;
+echo "patientid:" . $patientID;
 
 
-include 'php/connectDB.php'; 
+include 'php/connectDB.php';
 
 $patientData = [];
 $adverseReactions = [];
@@ -21,7 +21,7 @@ function sqlExecute($link, $sql, $params = [])
     }
     if (!empty([$params]) && !empty("i")) {
         $stmt->bind_param("i", ...[$params]);
-        echo" testexec<br>";
+        echo " testexec<br>";
     }
     if (!$stmt->execute()) {
         die("execute failed: (" . $stmt->errno . ") " . $stmt->error);
@@ -53,12 +53,12 @@ $result->free();
 $result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?", [$patientID]);
 echo $patientID;
 // addToList($result, $adverseReactions);
-if ($result instanceof mysqli_result) { 
+if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
-        $adverseReactions[] =$row;
+        $adverseReactions[] = $row;
     }
-}else {
-    echo"some error";
+} else {
+    echo "some error";
 }
 
 // if ($result && $result->num_rows > 0) {
@@ -89,14 +89,14 @@ addToList($result, $episodes);
 $result->free();
 
 $updatedEpisodes = [];
-foreach ($episodes as $episode) { 
+foreach ($episodes as $episode) {
     $sqlClinical = "SELECT proced_done, diagnosis FROM clinicaldata WHERE episodeID = ?";
-    $resultClinical = sqlExecute($link, $sqlClinical, $episode['episodeID']); 
+    $resultClinical = sqlExecute($link, $sqlClinical, $episode['episodeID']);
     $clinicalSummaries = [];
     if ($resultClinical instanceof mysqli_result) {
-        while ($clinicalRow = $resultClinical->fetch_assoc()) { 
+        while ($clinicalRow = $resultClinical->fetch_assoc()) {
         }
-        $resultClinical->free(); 
+        $resultClinical->free();
     }
     $episode['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) : 'No clinical data recorded';
     $updatedEpisodes[] = $episode;
@@ -106,14 +106,15 @@ $episodes = $updatedEpisodes;
 $link->close();
 
 
-foreach ($adverseReactions as $row) {
-    echo $row;
-    echo"testHERE<br>";
-}
+// foreach ($adverseReactions as $row) {
+//     echo $row;
+//     echo "testHERE<br>";
+// }
 
 
 
-function formatDate($dateString, $format = 'Y-m-d') {
+function formatDate($dateString, $format = 'Y-m-d')
+{
     if (empty($dateString)) {
         return 'N/A';
     }
@@ -121,12 +122,13 @@ function formatDate($dateString, $format = 'Y-m-d') {
         $date = new DateTime($dateString);
         return $date->format($format);
     } catch (Exception $e) {
-        return 'Invalid Date'; 
+        return 'Invalid Date';
     }
 }
 
-function safeEcho($value, $default = 'N/A') {
-    echo (!empty($value) || $value === '0') ? htmlspecialchars($value) : $default; 
+function safeEcho($value, $default = 'N/A')
+{
+    echo (!empty($value) || $value === '0') ? htmlspecialchars($value) : $default;
 }
 
 ?>

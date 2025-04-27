@@ -61,10 +61,10 @@ include 'php/queryPatientInfo.php'; ?>
                                 <?php var_dump ($adverseReactions); ?>
                                 <?php foreach ($adverseReactions as $reaction): ?>
                                     <tr>
-                                        <td><?php htmlspecialchars($reaction['reaction'])?></td>
-                                        <td><?php safeEcho(isset($reaction['reaction_origin']) ? $reaction['reaction_origin'] : "error something") ?></td>
-                                        <!-- <td><?php echo formatDate($reaction['start_date']); ?></td> -->
-                                        <!-- <td><?php echo formatDate($reaction['end_date']); ?></td> -->
+                                        <td><?php safeEcho(isset($reaction['reaction']) ? $reaction['reaction'] : "error grabbing") ?></td>
+                                        <td><?php safeEcho(isset($reaction['reaction_origin']) ? $reaction['reaction_origin'] : "error grabbing") ?></td>
+                                        <td><?php echo formatDate($reaction['start_date']); ?></td>
+                                        <td><?php echo formatDate($reaction['end_date']); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
