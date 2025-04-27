@@ -1,6 +1,9 @@
 <?php
-// session_start();
+session_start();
+echo"test";
 $patientID = $_SESSION['patID'];
+
+include 'php/connectDB.php'; 
 
 $patientData = [];
 $adverseReactions = [];
@@ -91,4 +94,23 @@ foreach ($adverseReactions as $row) {
     echo $row;
     echo"test";
 }
+
+
+
+function formatDate($dateString, $format = 'Y-m-d') {
+    if (empty($dateString)) {
+        return 'N/A';
+    }
+    try {
+        $date = new DateTime($dateString);
+        return $date->format($format);
+    } catch (Exception $e) {
+        return 'Invalid Date'; 
+    }
+}
+
+function safeEcho($value, $default = 'N/A') {
+    echo (!empty($value) || $value === '0') ? htmlspecialchars($value) : $default; 
+}
+
 ?>
