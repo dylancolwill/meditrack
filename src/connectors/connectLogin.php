@@ -32,8 +32,9 @@ if ($result) {
         while ($row = $result->fetch_assoc()) {
             $passwordVerify = $row["pwords"];
             if ($passwordVerify == "$hashedPass") {
-                redirect("patientSearch.php", 301);
                 echo "worked";
+                redirect("patientSearch.php", 301);
+                
     
             }
         }
