@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<form method="POST" action="connectors/connectAddInfo.php">
+<form method="POST">
     <label for="catagories">Select catagory:</label>
 
     <select onchange="onSelect()" name="catagories" id="catagories">
@@ -92,10 +92,10 @@
                     </thead>
                     <tbody id="medication-tbody">
                         <tr>
-                            <td><input type="text" placeholder="Medication Name" id="med_name"></td>
-                            <td><input type="text" placeholder="Dosage Amount" id="dosage"></td>
-                            <td><input type="date" id="med_start"></td>
-                            <td><input type="date" id="med_end"></td>
+                            <td><input type="text" placeholder="Medication Name" id="med_name" name="med_name"></td>
+                            <td><input type="text" placeholder="Dosage Amount" id="dosage" name="dosage"></td>
+                            <td><input type="date" id="med_start" name="med_start"></td>
+                            <td><input type="date" id="med_end" name="med_end"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -117,9 +117,9 @@
                     </thead>
                     <tbody id="vaccination-tbody">
                         <tr>
-                            <td><input type="text" placeholder="Vaccine Name" id="vaccineName"></td>
-                            <td><input type="date" id="startDate"></td>
-                            <td><input type="date" id="endDate"></td>
+                            <td><input type="text" placeholder="Vaccine Name" id="vaccineName" name="vaccineName"></td>
+                            <td><input type="date" id="startDate" name="startDate"></td>
+                            <td><input type="date" id="endDate" name="endDate"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -140,9 +140,9 @@
                 </tr>
                 <tbody id="clinical-tbody">
                     <tr>
-                        <td><input type="date" id="proced_date"></td>
+                        <td><input type="date" id="proced_date" name="proced_date"></td>
                         <td><input type="text" placeholder="Procedures" id="proced_done" name="proced_done"></td>
-                        <td><input type="text" placeholder="Results" id="proced_result" name="proced_result"></td>
+                        <td><input type="text" placeholder="Results" id="preced_result" name="preced_result"></td>
                         <td><input type="text" placeholder="Observations" id="signs" name="signs"></td>
                         <td><input type="text" placeholder="Diagnosis" id="diagnosis" name="diagnosis"></td>
                     </tr>

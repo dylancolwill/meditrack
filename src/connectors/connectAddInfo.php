@@ -99,7 +99,7 @@ switch ($catagories) {
         $reactionInfo = $_POST['reactionInfo'];
         $start_date = $_POST['start_date'];
         $end_date = $_POST['end_date'];
-        var_dump($reaction_origin, $reaction_info, $start_date, $end_date, $patientID); 
+        //var_dump($reaction_origin, $reaction_info, $start_date, $end_date, $patientID); 
         $sql = "INSERT INTO `adversereactions` (reaction_origin, reaction, start_date, end_date, patientID) VALUES ('$reaction_origin', '$reactionInfo', '$start_date', '$end_date', '$patientID')";
         push($sql, $link, $patientID);
 
@@ -108,7 +108,7 @@ switch ($catagories) {
         $vaccineName = $_POST['vaccineName'];
         $startDate = $_POST['startDate'];
         $endDate = $_POST['endDate'];
-        var_dump($vaccineName, $startDate, $endDate,  $patientID);
+        //var_dump($vaccineName, $startDate, $endDate,  $patientID);
         $sql = "INSERT INTO `vaccinations` (vaccination_name, vaccination_start, vaccination_end, patientID) VALUES ('$vaccineName', '$startDate', '$endDate', '$patientID')";
         push($sql, $link, $patientID);
 
@@ -138,11 +138,11 @@ switch ($catagories) {
     case 'clinical':
         $proced_date = $_POST['proced_date'];
         $proced_done = $_POST['proced_done'];
-        $proced_result = $_POST['proced_result'];
+        $preced_result = $_POST['preced_result'];
         $signs = $_POST['signs'];
         $diagnosis = $_POST['diagnosis'];
         //var_dump($proced_date, proced_done, $proced_result, $signs, $diagnosis, $episodeID);
-        $sql = "INSERT INTO `clinicaldata` (proced_date, proced_done, proced_result, signs, diagnosis, episodeID) VALUES ('$proced_date', '$proced_done', '$proced_result', '$signs', '$diagnosis', '$episodeID')";
+        $sql = "INSERT INTO `clinicaldata` (proced_date, proced_done, preced_result, signs, diagnosis, episodeID) VALUES ('$proced_date', '$proced_done', '$preced_result', '$signs', '$diagnosis', '$episodeID')";
         push($sql, $link, $patientID);
         break;
     default:
@@ -163,7 +163,6 @@ switch ($catagories) {
       //$stmt->bind_param("sii", $episodeDate, $patientID, $staffID);
       $stmt->execute();
   }
-  // header("Location: patientSearch.php");
   redirect("patientInfo.php", 301);
   exit;
 
