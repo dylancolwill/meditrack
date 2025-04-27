@@ -105,20 +105,54 @@ if ($result instanceof mysqli_result) {
 }
 $result->free();
 
+//clinical
+$result = sqlExecute($link, "SELECT cd.clinicalID, cd.episodeID, cd.proced_done, cd.diagnosis, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) as staff_name
+FROM clinicaldata cd
+JOIN episode e ON cd.episodeID = e.episodeID
+LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID
+WHERE e.patientID = ?
+ORDER BY e.episode_date DESC, cd.clinicalID ASC", [$patientID]);
+if ($result instanceof mysqli_result) {
+    while ($row = $result->fetch_assoc()) {
+        $clinicalEntries[] = $row;
+    }
+} else {
+    echo "some error";
+}
+$result->free();
+
 $updatedEpisodes = [];
 foreach ($episodes as $episode) {
-    $sqlClinical = "SELECT proced_done, diagnosis FROM clinicaldata WHERE episodeID = ?";
-    $resultClinical = sqlExecute($link, $sqlClinical, $episode['episodeID']);
     $clinicalSummaries = [];
-    if ($resultClinical instanceof mysqli_result) {
-        while ($clinicalRow = $resultClinical->fetch_assoc()) {
+    foreach ($clinicalEntries as $entry) {
+        if($entry['episodeID'] == $episode['episodeID']) {
+            $summaryParts = [];
+            if(!empty($entry['proced_done'])) {
+                $summaryParts[] = "Procedure: ".htmlspecialchars($entry["proced_done"], ENT_QUOTES,'UTF-8');
+            }
+            if(!empty($entry['diagnosis'])) {
+                $summaryParts[] = "Diagnosis: ".htmlspecialchars($entry["diagnosis"], ENT_QUOTES,'UTF-8');
+            }
+
+            if(!empty($summaryParts)) {
+                $summaryString = implode(' - ', $summaryParts);
+                $clinicalSummaries[] = $summaryString;
+            }
         }
-        $resultClinical->free();
     }
-    $episode['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) : 'No clinical data recorded';
+    $episode['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) :'None';
     $updatedEpisodes[] = $episode;
 }
 $episodes = $updatedEpisodes;
+//     if ($resultClinical instanceof mysqli_result) {
+//         while ($clinicalRow = $resultClinical->fetch_assoc()) {
+//         }
+//         $resultClinical->free();
+//     }
+//     $episode['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) : 'No clinical data recorded';
+//     $updatedEpisodes[] = $episode;
+// }
+// $episodes = $updatedEpisodes;
 
 $link->close();
 
