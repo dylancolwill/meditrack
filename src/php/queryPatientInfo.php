@@ -53,11 +53,19 @@ $result->free();
 $result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?", [$patientID]);
 echo $patientID;
 // addToList($result, $adverseReactions);
-if ($result && $result->num_rows > 0) {
-    $adverseReactions = $result->fetch_assoc();
-} else {
-    echo "patient retrieve error" . htmlspecialchars($patientID);
+if ($result instanceof mysqli_result) { 
+    while ($row = $result->fetch_assoc()) {
+        $adverseReactions[] =$row;
+    }
+}else {
+    echo"some error";
 }
+
+// if ($result && $result->num_rows > 0) {
+//     $adverseReactions = $result->fetch_assoc();
+// } else {
+//     echo "patient retrieve error" . htmlspecialchars($patientID);
+// }
 $result->free();
 
 //condition
