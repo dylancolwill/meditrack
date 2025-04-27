@@ -38,7 +38,7 @@ if (isset($_GET['search'])) {
             </div>
             <div class="row">
                 <div class="col-lg-3 col-sm-3 col-md-3"></div>
-                <button onclick="document.location='newPatient.html'" type="submit" id="newPatientButton"
+                <button onclick="document.location='newPatient.php'" type="submit" id="newPatientButton"
                     class="col-lg-6 col-sm-5 col-md-6">New Patient</i></button>
             </div>
         </div>
