@@ -108,8 +108,8 @@ if (isset($_GET['search'])) {
             $_SESSION['patID'] = $patientID;
             // session_write_close();
             // header("Location: patientSearch.php");
-            // redirect("patientInfo.php", 301);
-            echo $searchTerm . $patientID;
+            redirect("patientInfo.php", 301);
+            // echo $searchTerm . $patientID;
 
             exit;
         } else {
