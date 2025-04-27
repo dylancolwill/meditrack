@@ -24,14 +24,20 @@ $pswd = $_POST['pswd'];
 $hashedPass = password_hash("$pswd", PASSWORD_DEFAULT);
  
 $sql = "SELECT pwords FROM loginInformation WHERE userName = '$uName' ";
-echo "work";
+
 $result = $link->query($sql);
-echo "work2";
+
 if ($result) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $passwordVerify = $row["pwords"];
         }
+
+        if ($passwordVerify == "$hashedPass") {
+            redirect("patientSearch.php", 301);
+        
+        }
+        
     } else {
         echo "nothing found";
     }
@@ -40,10 +46,6 @@ if ($result) {
     echo "error (" . $link->errno . ") " . $link->error;
 }
 
-if ($passwordVerify == "$hashedPass") {
-    redirect("patientSearch.php", 301);
-
-}
 
 
 
