@@ -126,15 +126,17 @@ foreach ($episodes as $episode) {
     $clinicalSummaries = [];
     foreach ($clinicalEntries as $entry) {
         if($entry['episodeID'] == $episode['episodeID']) {
-            $summary =[];
+            $summaryParts = [];
             if(!empty($entry['proced_done'])) {
-                $summary = "Procedure: ".htmlspecialchars($entry["proced_done"], ENT_QUOTES,'UTF-8');
+                $summaryParts[] = "Procedure: ".htmlspecialchars($entry["proced_done"], ENT_QUOTES,'UTF-8');
             }
             if(!empty($entry['diagnosis'])) {
-                $summary = "Diagnosis: ".htmlspecialchars($entry["diagnosis"], ENT_QUOTES,'UTF-8');
+                $summaryParts[] = "Diagnosis: ".htmlspecialchars($entry["diagnosis"], ENT_QUOTES,'UTF-8');
             }
-            if(!empty($summary)) {
-                $clinicalSummaries[] = implode(' - ', $summary);
+
+            if(!empty($summaryParts)) {
+                $summaryString = implode(' - ', $summaryParts);
+                $clinicalSummaries[] = $summaryString;
             }
         }
     }
