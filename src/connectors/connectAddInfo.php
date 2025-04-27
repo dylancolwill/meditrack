@@ -105,11 +105,13 @@ switch ($catagories) {
         break;
     case 'medication':
         $med_name = $_POST['med_name'];
+        // echo $med_name;
+        
         $med_start = $_POST['med_start'];
         $med_end = $_POST['med_end'];
         $dosage = $_POST['dosage'];
         //var dump may not be needed this left commented to test var_dump($med_name, $med_start, $med_end, $dosage);
-        $sql = "INSERT INTO `medication` (med_name, med_start, med_end, dosage, patientID, episodeID) VALUES ('$vaccineName', '$startDate', '$endDate', '$dosage', '$patientID', '$episodeID')";
+        $sql = "INSERT INTO `medication` (med_name, med_start, med_end, dosage, patientID, episodeID) VALUES ('$med_name', '$med_start', '$med_end', '$dosage', '$patientID', '$episodeID')";
         push($sql, $link, $patientID);
 
         break;
