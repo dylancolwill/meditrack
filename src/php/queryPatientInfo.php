@@ -1,7 +1,8 @@
 <?php
 session_start();
-echo"test";
 $patientID = $_SESSION['patID'];
+echo $patientID;
+
 
 include 'php/connectDB.php'; 
 
