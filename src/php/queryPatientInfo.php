@@ -21,6 +21,7 @@ function sqlExecute($link, $sql, $params = [])
     }
     if (!empty([$params]) && !empty("i")) {
         $stmt->bind_param("i", ...[$params]);
+        echo"test";
     }
     if (!$stmt->execute()) {
         die("execute failed: (" . $stmt->errno . ") " . $stmt->error);
@@ -50,6 +51,7 @@ $result->free();
 
 //reaction
 $result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?", [$patientID]);
+echo $patientID;
 addToList($result, $adverseReactions);
 $result->free();
 
