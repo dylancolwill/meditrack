@@ -53,6 +53,12 @@ if ($result) {
     echo "error (" . $link->errno . ") " . $link->error;
 }
 
+function redirect($url, $statusCode = 301) {
+        
+        
+    header("Location: " . $url, true, $statusCode);
+    exit();
+}
 
 //Code to add login passwords
 // $sql = "INSERT INTO `loginInformation` (userName, pwords) VALUES ('$uName', '$hashedPass')";
