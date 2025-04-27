@@ -106,7 +106,7 @@ if ($result instanceof mysqli_result) {
 $result->free();
 
 //clinical
-$sqlClinical = sqlExecute($link, "SELECT cd.clinicalID, cd.episodeID, cd.proced_done, cd.diagnosis, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) as staff_name
+$result = sqlExecute($link, "SELECT cd.clinicalID, cd.episodeID, cd.proced_done, cd.diagnosis, e.episode_date, CONCAT(ms.fname, ' ', ms.lname) as staff_name
 FROM clinicaldata cd
 JOIN episode e ON cd.episodeID = e.episodeID
 LEFT JOIN medicalstaff ms ON e.staffID = ms.staffID
