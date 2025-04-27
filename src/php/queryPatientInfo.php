@@ -31,12 +31,14 @@ function sqlExecute($link, $sql, $params = [])
     return $result;
 }
 
-function addToList($result, $list = [])
+function add($result, $list = [])
 {
-    if ($result) {
+    if ($result instanceof mysqli_result) {
         while ($row = $result->fetch_assoc()) {
             $list[] = $row;
         }
+    } else {
+        echo "some error";
     }
 }
 
@@ -53,13 +55,14 @@ $result->free();
 $result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?", [$patientID]);
 echo $patientID;
 // addToList($result, $adverseReactions);
-if ($result instanceof mysqli_result) {
-    while ($row = $result->fetch_assoc()) {
-        $adverseReactions[] = $row;
-    }
-} else {
-    echo "some error";
-}
+// if ($result instanceof mysqli_result) {
+//     while ($row = $result->fetch_assoc()) {
+//         $adverseReactions[] = $row;
+//     }
+// } else {
+//     echo "some error";
+// }
+add($result, $adverseReactions);
 
 // if ($result && $result->num_rows > 0) {
 //     $adverseReactions = $result->fetch_assoc();
@@ -113,7 +116,7 @@ $link->close();
 
 
 
-function formatDate($dateString, $format = 'Y-m-d')
+function formatDate($dateString, $format = 'd-m-Y')
 {
     if (empty($dateString)) {
         return 'N/A';
