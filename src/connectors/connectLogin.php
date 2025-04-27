@@ -25,7 +25,7 @@ $hashedPass = password_hash("$pswd", PASSWORD_DEFAULT);
 
 
 $sql = "INSERT INTO `loginInformation` (userName, pwords) VALUES ('$uName', '$reactipswdonInfo')";
-$stmt = $link->prepare($sql);
+//$stmt = $link->prepare($sql);
 
   if ($stmt === false) {
       echo "error" . htmlspecialchars(($link->error));
