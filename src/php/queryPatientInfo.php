@@ -35,7 +35,7 @@ function addToList($result, $list = [])
 {
     if ($result) {
         while ($row = $result->fetch_assoc()) {
-            echo "addlist".$row;
+            echo "addlist".$row[0];
             $list[] = $row;
         }
     }
