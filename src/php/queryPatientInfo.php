@@ -89,5 +89,6 @@ $link->close();
 
 foreach ($adverseReactions as $row) {
     echo $row;
+    echo"test";
 }
 ?>
