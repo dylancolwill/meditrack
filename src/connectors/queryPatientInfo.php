@@ -44,7 +44,7 @@ function add($result, $list = [])
 // $result = sqlExecute($link, "SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = ?", [$patientID]);
 
 
-$stmt = $link->prepare("SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = 5");
+$stmt =("SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = 5");
 // if (!$stmt) {
 //     die("prepare failed: (" . $link->errno . ") " . $link->error);
 // }
@@ -55,7 +55,7 @@ $stmt = $link->prepare("SELECT patientID, fname, lname, date_of_birth, address, 
 //     die("execute failed: (" . $stmt->errno . ") " . $stmt->error);
 // }
 $result = mysqli_query($link, $stmt);
-$stmt->close();
+// $stmt->close();
 
 
 echo "patientid from query: " . $patientID . '<br>';
@@ -70,7 +70,9 @@ if ($result && $result->num_rows > 0) {
 } else {
     echo "patient retrieve error" . htmlspecialchars($patientID);
 }
-$result->free();
+// $result->free();
+mysqli_free_result($result);
+mysqli_close($link);
 
 //reaction
 $result = sqlExecute($link, "SELECT reaction_origin, reaction, start_date, end_date FROM adversereactions WHERE patientID = ?", [$patientID]);
