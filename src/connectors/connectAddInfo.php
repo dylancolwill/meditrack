@@ -105,6 +105,7 @@ switch ($catagories) {
         break;
     case 'medication':
         $med_name = $_POST['med_name'];
+        echo $med_name;
         $med_start = $_POST['med_start'];
         $med_end = $_POST['med_end'];
         $dosage = $_POST['dosage'];
