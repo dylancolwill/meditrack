@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<form method="POST"> 
 <div class="container" id="padding">
     <div class="main" id="backing">
     <div class="row">
@@ -23,3 +24,4 @@
 </div>
 
 </body>
+</form>

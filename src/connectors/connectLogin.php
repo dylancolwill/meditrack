@@ -27,6 +27,8 @@ $hashedPass = password_hash("$pswd", PASSWORD_DEFAULT);
 $sql = "INSERT INTO `loginInformation` (uName, pwords) VALUES ('$uName', '$reactipswdonInfo')";
 $stmt = $link->prepare($sql);
 
+//change this back in a sec
+
 // $sql = "SELECT pwords FROM loginInformation WHERE userName = '$uName' ";
 // echo "work";
 // $result = $link->query($sql);
