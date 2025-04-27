@@ -64,7 +64,8 @@ $result->free();
 $result = sqlExecute($link, "SELECT condit_name, condit_start, condit_end, clinicalID, medicationID FROM conditions WHERE patientID = ?", [$patientID]);
 if ($result instanceof mysqli_result) {
     while ($row = $result->fetch_assoc()) {
-        $contitions[] = $row;
+        $conditions[] = $row;
+        // safeEcho($row);
     }
 } else {
     echo "some error";
