@@ -41,15 +41,31 @@ function add($result, $list = [])
 }
 
 //patient info
-$result = sqlExecute($link, "SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = ?", [$patientID]);
-echo"patientid from query: ".$patientID.'<br>';
+// $result = sqlExecute($link, "SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = ?", [$patientID]);
+
+
+$stmt = $link->prepare("SELECT patientID, fname, lname, date_of_birth, address, provider FROM patient WHERE patientID = '$patientID'");
+// if (!$stmt) {
+//     die("prepare failed: (" . $link->errno . ") " . $link->error);
+// }
+// if (!empty([$params]) && !empty("i")) {
+//     $stmt->bind_param("i", ...[$params]);
+// }
+// if (!$stmt->execute()) {
+//     die("execute failed: (" . $stmt->errno . ") " . $stmt->error);
+// }
+$result = mysqli_query($link, $stmt);
+$stmt->close();
+
+
+echo "patientid from query: " . $patientID . '<br>';
 var_dump($result);
 if ($result && $result->num_rows > 0) {
-    echo'patientbefore<br>';
+    echo 'patientbefore<br>';
     var_dump($patientData);
-    echo'patientafter<br>';
+    echo 'patientafter<br>';
     $patientData = $result->fetch_assoc();
-    echo'<br>';
+    echo '<br>';
     var_dump($patientData);
 } else {
     echo "patient retrieve error" . htmlspecialchars($patientID);
@@ -133,22 +149,22 @@ $updatedEpisodes = [];
 foreach ($episodes as $episode) {
     $clinicalSummaries = [];
     foreach ($clinicalEntries as $entry) {
-        if($entry['episodeID'] == $episode['episodeID']) {
+        if ($entry['episodeID'] == $episode['episodeID']) {
             $summaryParts = [];
-            if(!empty($entry['proced_done'])) {
-                $summaryParts[] = "Procedure: ".htmlspecialchars($entry["proced_done"], ENT_QUOTES,'UTF-8');
+            if (!empty($entry['proced_done'])) {
+                $summaryParts[] = "Procedure: " . htmlspecialchars($entry["proced_done"], ENT_QUOTES, 'UTF-8');
             }
-            if(!empty($entry['diagnosis'])) {
-                $summaryParts[] = "Diagnosis: ".htmlspecialchars($entry["diagnosis"], ENT_QUOTES,'UTF-8');
+            if (!empty($entry['diagnosis'])) {
+                $summaryParts[] = "Diagnosis: " . htmlspecialchars($entry["diagnosis"], ENT_QUOTES, 'UTF-8');
             }
 
-            if(!empty($summaryParts)) {
+            if (!empty($summaryParts)) {
                 $summaryString = implode(' - ', $summaryParts);
                 $clinicalSummaries[] = $summaryString;
             }
         }
     }
-    $episode['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) :'None';
+    $episode['clinical_summary'] = !empty($clinicalSummaries) ? implode('<br>', $clinicalSummaries) : 'None';
     $updatedEpisodes[] = $episode;
 }
 $episodes = $updatedEpisodes;
