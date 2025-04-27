@@ -31,11 +31,13 @@ if ($result) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $passwordVerify = $row["pwords"];
+            echo "hit";
         }
 
         if ($passwordVerify == "$hashedPass") {
             redirect("patientSearch.php", 301);
-        
+            echo "worked";
+
         }
         
     } else {
